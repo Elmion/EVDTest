@@ -15,9 +15,16 @@ namespace GameTester
         public Form1()
         {
             InitializeComponent();
-            Effect f = new Effect();
-            f.LoadEffect("");
 
+            CardManager.LoadCards("CardDescription.xml");
+            bCardActivator.Text = CardManager.Decka[0].Header;
+            tbCardDescription.Text = CardManager.Decka[0].Description;
+            bCardActivator.Click += BCardActivator_Click;
+        }
+
+        private void BCardActivator_Click(object sender, EventArgs e)
+        {
+            CardManager.Decka[0].Click();
         }
     }
 }

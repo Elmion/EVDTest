@@ -6,11 +6,19 @@ using System.Threading.Tasks;
 
 namespace GameTester
 {
-    class Card
+    public class Card
     {
         public Access access; 
-        public string DescriptionText;
-        public string HeaderText;
+        public string Description;
+        public string Header;
         public List<Effect> effects;
+
+        public void Click()
+        {
+            for (int i = 0; i < effects.Count; i++)
+            {
+                effects[i].DoEffect();
+            }
+        }
     }
 }

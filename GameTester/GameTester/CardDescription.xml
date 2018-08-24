@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<root>
+<Card>
+  <Header>Клешня</Header>
+  <Description>А Я Клешня И Я Клешня</Description>
+  <Effects>
+        <Effect>
+          <Name>ChangeResurce</Name>
+          <Parameters>
+            <Param>Money</Param>
+            <Param>10</Param>
+          </Parameters>
+        </Effect>
+        <Effect>
+        <Name>Effect2</Name>
+        <Parameters>
+          <Param>3</Param>
+          <Param>4</Param>
+        </Parameters>
+      </Effect>
+  </Effects>
+</Card>
+<Card>
+  <Header>Test</Header>
+  <Description>Tralalaala</Description>
+  <Effects>
+        <Effect>
+          <Name>Effect1</Name>
+          <Parameters>
+            <Param>1</Param>
+          </Parameters>
+        </Effect>
+        <Effect>
+        <Name>Effect2</Name>
+        <Parameters>
+          <Param>3</Param>
+          <Param>4</Param>
+        </Parameters>
+      </Effect>
+  </Effects>
+</Card>
+</root>
