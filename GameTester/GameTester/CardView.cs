@@ -12,11 +12,43 @@ namespace GameTester
 {
     public partial class CardView : UserControl
     {
-        public CardView(Card card)
+        FullCard fullform;
+        public readonly Card card;
+        Form owner;
+        public CardView(Card card, Form owner)
         {
             InitializeComponent();
+            this.card = card;
             lHeader.Text = card.Header;
+            this.owner = owner;
             tbCardDescription.Text = card.Description;
+            picCard.BackgroundImage = CardManager.ImagesStorage[card.ImageRef];
+            this.MouseDown += CardView_MouseDown;
+            this.MouseUp += CardView_MouseUp;
+        }
+
+        private void CardView_MouseDown(object sender, MouseEventArgs e)
+        {
+            if(e.Button == MouseButtons.Right)
+            {
+                fullform = new FullCard(card);
+                fullform.StartPosition = FormStartPosition.Manual;
+                fullform.Location = new Point(owner.Location.X + owner.Size.Width, owner.Location.Y);
+                fullform.Show();
+            }
+        }
+
+        private void CardView_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                if(fullform != null)
+                {
+                    fullform.Hide();
+                    fullform.Dispose();
+                }
+                 
+            }
         }
     }
 }

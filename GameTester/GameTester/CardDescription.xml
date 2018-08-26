@@ -3,6 +3,7 @@
 <Card>
   <Header>Клешня</Header>
   <Description>А Я Клешня И Я Клешня</Description>
+  <Image>E:\Buffer\TesterLifeCard\LearnIco.png</Image>
   <Effects>
         <Effect>
           <Name>ChangeResurce</Name>
@@ -21,8 +22,10 @@
   </Effects>
 </Card>
 <Card>
+  <DateAdd></DateAdd>
   <Header>Test</Header>
   <Description>Tralalaala</Description>
+  <Image>E:\Buffer\TesterLifeCard\CookIco.png</Image>
   <Effects>
         <Effect>
           <Name>Effect1</Name>

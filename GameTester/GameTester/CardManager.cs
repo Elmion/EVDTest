@@ -5,12 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Xml;
+using System.Drawing;
 
 namespace GameTester
 {
     class CardManager
     {
-       public  static List<Card> Decka = new List<Card>();
+       public static List<Card> Decka = new List<Card>();
+       public static Dictionary<Guid, Image> ImagesStorage = new Dictionary<Guid, Image>();
 
         public static void LoadCards(string XMLEffectPath)
         {
@@ -22,6 +24,8 @@ namespace GameTester
 
                 card.Header = XMLCardDescription.SelectSingleNode("Header").InnerText;
                 card.Description = XMLCardDescription.SelectSingleNode("Description").InnerText;
+                card.ImageRef = GetImage(XMLCardDescription.SelectSingleNode("Image").InnerText);
+
                 //Заполняем эффекты
                 card.effects = new List<Effect>();
                 foreach (XmlNode EffectXML in XMLCardDescription.SelectSingleNode("Effects").ChildNodes)
@@ -37,6 +41,38 @@ namespace GameTester
                 }
                 Decka.Add(card);
             }
+        }
+        public static Card[] CreateNewRandomCards(Random rnd,int numCards)
+        {
+            Card[] cards = new Card[numCards];
+
+            for (int i = 0; i < numCards; i++)
+            {
+                cards[i] = (Card)Decka[rnd.Next(Decka.Count)].Clone();
+            }
+            return cards;
+        }
+        private static Guid GetImage(string path)
+        {
+            Image image = null;
+            Guid guid = Guid.NewGuid();
+            try
+            {
+                using (FileStream fs = new FileStream(path, FileMode.Open))
+                {
+                    image = Image.FromStream(fs);
+                    fs.Close();
+                }
+            }
+            catch
+            {
+                image = Properties.Resources.NoImage;
+            }
+            finally
+            {
+                ImagesStorage.Add(guid, image);
+            }
+            return guid;
         }
     }
 }

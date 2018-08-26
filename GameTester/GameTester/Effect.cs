@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Xml;
 namespace GameTester
 {
+    [Serializable]
     public class Effect
     {
         Delegate effectMethod;

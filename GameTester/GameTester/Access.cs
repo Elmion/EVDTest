@@ -1,6 +1,8 @@
-﻿namespace GameTester
+﻿using System;
+namespace GameTester
 {
-    internal class Access
+    [Serializable]
+    public class Access
     {
     }
 }

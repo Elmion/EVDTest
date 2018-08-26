@@ -30,16 +30,18 @@
         {
             this.tbCardDescription = new System.Windows.Forms.TextBox();
             this.lHeader = new System.Windows.Forms.Label();
+            this.picCard = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.picCard)).BeginInit();
             this.SuspendLayout();
             // 
             // tbCardDescription
             // 
             this.tbCardDescription.Enabled = false;
             this.tbCardDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.tbCardDescription.Location = new System.Drawing.Point(0, 74);
+            this.tbCardDescription.Location = new System.Drawing.Point(0, 89);
             this.tbCardDescription.Multiline = true;
             this.tbCardDescription.Name = "tbCardDescription";
-            this.tbCardDescription.Size = new System.Drawing.Size(125, 51);
+            this.tbCardDescription.Size = new System.Drawing.Size(125, 36);
             this.tbCardDescription.TabIndex = 1;
             this.tbCardDescription.Text = "asdasdasdasd";
             // 
@@ -54,14 +56,27 @@
             this.lHeader.TabIndex = 2;
             this.lHeader.Text = "lHeader";
             // 
+            // picCard
+            // 
+            this.picCard.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.picCard.Enabled = false;
+            this.picCard.Location = new System.Drawing.Point(28, 23);
+            this.picCard.Name = "picCard";
+            this.picCard.Size = new System.Drawing.Size(61, 60);
+            this.picCard.TabIndex = 3;
+            this.picCard.TabStop = false;
+            // 
             // CardView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Controls.Add(this.picCard);
             this.Controls.Add(this.lHeader);
             this.Controls.Add(this.tbCardDescription);
             this.Name = "CardView";
-            this.Size = new System.Drawing.Size(125, 125);
+            this.Size = new System.Drawing.Size(123, 123);
+            ((System.ComponentModel.ISupportInitialize)(this.picCard)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -70,5 +85,6 @@
         #endregion
         private System.Windows.Forms.TextBox tbCardDescription;
         private System.Windows.Forms.Label lHeader;
+        private System.Windows.Forms.PictureBox picCard;
     }
 }
