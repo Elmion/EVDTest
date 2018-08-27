@@ -10,6 +10,7 @@ namespace GameTester
 {   [Serializable]
     public class Card : ICloneable
     {
+        public Guid uid;
         public Access access; 
         public string Description;
         public string Header;

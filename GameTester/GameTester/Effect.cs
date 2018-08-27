@@ -8,8 +8,8 @@ namespace GameTester
     [Serializable]
     public class Effect
     {
-        Delegate effectMethod;
-        List<object> Params;
+        public Delegate effectMethod;
+        public List<object> Params;
 
         public Effect(string Name, List<object> Params)
         {
@@ -20,14 +20,17 @@ namespace GameTester
         {
             effectMethod.DynamicInvoke(Params);
         }
+        [IncomingTypes(typeof(int),typeof(string))]
         public void Effect1(List<object> input)
         {
+
             Console.WriteLine(input[0]);
         }
         public void Effect2(List<object> input)
         {
             Console.WriteLine(input[1] + " " + input[0]);
         }
+
         /// <summary>
         /// Изменяет именованый ресурс на значение . Если его нет то предварительно, он будет создан с нулевым значением
         /// </summary>
