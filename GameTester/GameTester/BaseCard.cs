@@ -7,6 +7,7 @@ using System.IO;
 using System.Xml;
 using System.Drawing;
 using System.Configuration;
+using System.Reflection;
 
 namespace GameTester
 {
@@ -20,6 +21,8 @@ namespace GameTester
             ImageBase = new ImageFile();
             Cards = new List<Card>();
 
+            if (!File.Exists(ConfigurationManager.AppSettings["XMLCardBasePath"])) return;
+
             XmlDocument doc = new XmlDocument();
             doc.LoadXml(new StreamReader(ConfigurationManager.AppSettings["XMLCardBasePath"]).ReadToEnd());
             foreach (XmlNode XMLCardDescription in doc.GetElementsByTagName("Card"))
@@ -28,6 +31,7 @@ namespace GameTester
 
                 card.Header = XMLCardDescription.SelectSingleNode("Header").InnerText;
                 card.Description = XMLCardDescription.SelectSingleNode("Description").InnerText;
+                card.uid =  Guid.Parse(XMLCardDescription.SelectSingleNode("uid").InnerText);
 
                 card.ImageRef = Guid.Parse(XMLCardDescription.SelectSingleNode("Image").InnerText);
 
@@ -52,6 +56,7 @@ namespace GameTester
             card.uid = Guid.NewGuid();
             ImageItem item = ImageBase.AddImage(cardView, card.Header, card.Description);
             card.ImageRef = item.uid;
+            Cards.Add(card);
             return card.uid;
         }
         public Dictionary<Guid,String> GetCardsList()
@@ -67,7 +72,7 @@ namespace GameTester
                     return Cards[index];
             return null;
         }
-        public ImageItem AddCardsToBase(Image im,string name,string description)
+        public ImageItem AddImageToBase(Image im,string name,string description)
         {
            return ImageBase.AddImage(im, name, description);
         }
@@ -79,16 +84,14 @@ namespace GameTester
         {
             XmlDocument doc = new XmlDocument();
             XmlElement root = doc.CreateElement("root");
-
-
-            doc.LoadXml(new StreamReader(ConfigurationManager.AppSettings["XMLCardBasePath"]).ReadToEnd());
+ 
             foreach (Card card in Cards)
             {
+                var CardRoot = doc.CreateElement("Card");
                 var Header = doc.CreateElement("Header"); Header.InnerText = card.Header;
+                var uid = doc.CreateElement("uid"); uid.InnerText = card.uid.ToString();
                 var Description = doc.CreateElement("Description"); Description.InnerText = card.Description;
                 var Image = doc.CreateElement("Image"); Image.InnerText = card.ImageRef.ToString();
-
-
                 var EffectBlock = doc.CreateElement("Effects");
 
                 foreach (Effect effect in card.effects)
@@ -100,37 +103,24 @@ namespace GameTester
                     currentEffect.AppendChild(EffectName);
                     currentEffect.AppendChild(Parameters);
 
-                    IncomingTypesAttribute attr = (IncomingTypesAttribute)typeof(Effect).GetMethod(effect.effectMethod.Method.Name).GetCustomAttributes(typeof(IncomingTypesAttribute), false)[0];
                     for (int i = 0; i < effect.Params.Count; i++)
                     {
-                        MethodInfo castMethod = this.GetType().GetMethod("Cast").MakeGenericMethod(t);
-                        object castedObject = castMethod.Invoke(null, new object[] { obj });
-
-                        var param = doc.CreateElement("Param"); param.InnerText =((attr.types[i]) effect.Params[i]);
-                        
-
-                        EffectBlock.
+                        var param = doc.CreateElement("Param"); param.InnerText = (String)effect.Params[i];
+                        Parameters.AppendChild(param);
                     }
-                    for(Type item in attr.types)
-                    {
 
-                    }
                 }
-                //Заполняем эффекты
-                card.effects = new List<Effect>();
-                foreach (XmlNode EffectXML in XMLCardDescription.SelectSingleNode("Effects").ChildNodes)
-                {
-                    XmlNode EffectParamsNode = EffectXML.SelectSingleNode("Parameters");
-                    List<object> Params = new List<object>();
-                    for (int i = 0; i < EffectParamsNode.ChildNodes.Count; i++)
-                    {
-                        Params.Add(EffectParamsNode.ChildNodes[i].InnerText);
-                    }
-                    string MethodName = EffectXML.SelectSingleNode("Name").InnerText;
-                    card.effects.Add(new Effect(MethodName, Params));
-                }
-                Cards.Add(card);
+                CardRoot.AppendChild(uid);
+                CardRoot.AppendChild(Header);
+                CardRoot.AppendChild(Description);
+                CardRoot.AppendChild(Image);
+                CardRoot.AppendChild(EffectBlock);
+                
+                root.AppendChild(CardRoot);
             }
+            doc.AppendChild(root);
+            doc.Save(ConfigurationManager.AppSettings["XMLCardBasePath"]);
+            ImageBase.SaveLibrary();
         }
     }
     public class ImageFile

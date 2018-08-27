@@ -88,7 +88,6 @@
     <Compile Include="FullCard.Designer.cs">
       <DependentUpon>FullCard.cs</DependentUpon>
     </Compile>
-    <Compile Include="IncomingParamTypeAttribute.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -134,9 +133,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="CardDescription.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <None Include="Resources\NoImage.jpeg" />
     <None Include="Resources\Finance-Money-Box-icon.png" />
     <None Include="Resources\Heart.png" />

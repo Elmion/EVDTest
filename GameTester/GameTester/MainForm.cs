@@ -15,8 +15,12 @@ namespace GameTester
         public MainForm()
         {
             InitializeComponent();
-            Image i = Image.FromFile(@"E:\Buffer\Heart.png");
-            Image d = Image.FromFile(@"E:\Buffer\icons8-Muscle Filled-50.png");
+            CardBase b = CardBase.Instance;
+            Card c = b.Cards[0];
+            //Effect ef = new Effect("ChangeResurce", new List<object>() { "adasd", "11" });
+            // Card c = new Card() { access = new Access(), Description = "kzkzczxcz", effects = new List<Effect>() { ef }, Header = "Тест" };
+            //b.AddNewCardToBase(c, Image.FromFile(@"E:\Buffer\Heart.png"));
+            //b.SaveLibrary();
             //BaseCard.Instance.ImageBase.AddImage(i, "Heart", "Nhfkfkf");
             //BaseCard.Instance.ImageBase.AddImage(d, "hand", "asdadasdasd");
             //BaseCard.Instance.ImageBase.SaveLibrary();
