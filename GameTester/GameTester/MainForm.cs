@@ -15,8 +15,7 @@ namespace GameTester
         public MainForm()
         {
             InitializeComponent();
-            CardBase b = CardBase.Instance;
-            Card c = b.Cards[0];
+            ucCM.Init(typeof(Effect));
             //Effect ef = new Effect("ChangeResurce", new List<object>() { "adasd", "11" });
             // Card c = new Card() { access = new Access(), Description = "kzkzczxcz", effects = new List<Effect>() { ef }, Header = "Тест" };
             //b.AddNewCardToBase(c, Image.FromFile(@"E:\Buffer\Heart.png"));
