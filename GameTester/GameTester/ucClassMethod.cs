@@ -31,7 +31,7 @@ namespace GameTester
 
         private void CbMethods_SelectedIndexChanged(object sender, EventArgs e)
         {
-            MethodInfo selectedMethod = new List<MethodInfo>(typeControl.GetMethods(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly))[cbMethods.SelectedIndex];
+            MethodInfo selectedMethod = typeControl.GetMethod((String)cbMethods.SelectedItem);
             ParameterInfo[] pInfo = selectedMethod.GetParameters();
 
             DopControlsInForm.ForEach(x => x.Dispose());
@@ -59,15 +59,33 @@ namespace GameTester
         }
         public ParametredAction GetAction()
         {
-            ArrayList ReadyParams = new ArrayList();
-            for (int i = 0; i < DopControlsInForm.Count; i++)
+            ParameterInfo[] info = typeControl.GetMethod(cbMethods.Text).GetParameters();
+            try
             {
-                if(DopControlsInForm[i].Name.Contains("tb"))
+                ArrayList ReadyParams = new ArrayList();
+                List<Control> temp = DopControlsInForm.Where<Control>(x => x.Name.Contains("tb")).ToList();
+                for (int i = 0; i < temp.Count; i++)
                 {
-                    ReadyParams.Add(DopControlsInForm[i].Text);
+                    ReadyParams.Add(Convert.ChangeType(temp[i].Text,info[i].ParameterType));
                 }
+                return new ParametredAction(typeControl.GetMethod(cbMethods.Text), ReadyParams.ToArray(), typeControl);
             }
-            return new ParametredAction(typeControl.GetMethod(cbMethods.Text), ReadyParams.ToArray(), typeControl);
+            catch
+            {
+                return null;
+            }
+        }
+        public void LoadEffect(ParametredAction pa)
+        {
+            cbMethods.SelectedIndex = cbMethods.Items.IndexOf(pa.Name);
+            CbMethods_SelectedIndexChanged(null, null);
+            ParameterInfo[] info = pa.link.GetParameters();
+            for (int i = 0; i < info.Length; i++)
+            {
+                MethodInfo ToString = info[i].ParameterType.GetMethod("ToString", new Type[] { });
+                Control ctrl =  DopControlsInForm.Find(x => x.Name == "tb" + info[i].Name);
+                if(ctrl != null) ctrl.Text = (string)ToString.Invoke(pa.Params[i], null);
+            }
         }
     }
 }

@@ -1,15 +1,15 @@
 <root>
   <Card>
-    <uid>58e70dc5-bf10-45cb-91b8-c4e702e06421</uid>
-    <Header>Тест</Header>
-    <Description>kzkzczxcz</Description>
-    <Image>23a76285-c14b-4439-9816-6086e0489865</Image>
+    <uid>dbcca3b2-18b7-4145-af5c-e9c447ff2380</uid>
+    <Header>Ntadas</Header>
+    <Description>adasd</Description>
+    <Image>68c5b6ee-b7ca-4e36-913c-393e29a560de</Image>
     <Effects>
       <Effect>
         <Name>ChangeResurce</Name>
         <Parameters>
-          <Param>adasd</Param>
-          <Param>11</Param>
+          <Param>2</Param>
+          <Param>3</Param>
         </Parameters>
       </Effect>
     </Effects>

@@ -8,6 +8,7 @@ using System.Xml;
 using System.Drawing;
 using System.Configuration;
 using System.Reflection;
+using System.Collections;
 
 namespace GameTester
 {
@@ -24,7 +25,8 @@ namespace GameTester
             if (!File.Exists(ConfigurationManager.AppSettings["XMLCardBasePath"])) return;
 
             XmlDocument doc = new XmlDocument();
-            doc.LoadXml(new StreamReader(ConfigurationManager.AppSettings["XMLCardBasePath"]).ReadToEnd());
+           
+            doc.Load(ConfigurationManager.AppSettings["XMLCardBasePath"]); 
             foreach (XmlNode XMLCardDescription in doc.GetElementsByTagName("Card"))
             {
                 Card card = new Card();
@@ -36,7 +38,7 @@ namespace GameTester
                 card.ImageRef = Guid.Parse(XMLCardDescription.SelectSingleNode("Image").InnerText);
 
                 //Заполняем эффекты
-                card.effects = new List<Effect>();
+                card.effects = new List<ParametredAction>();
                 foreach (XmlNode EffectXML in XMLCardDescription.SelectSingleNode("Effects").ChildNodes)
                 {
                     XmlNode EffectParamsNode = EffectXML.SelectSingleNode("Parameters");
@@ -46,7 +48,13 @@ namespace GameTester
                         Params.Add(EffectParamsNode.ChildNodes[i].InnerText);
                     }
                     string MethodName = EffectXML.SelectSingleNode("Name").InnerText;
-                    card.effects.Add(new Effect(MethodName, Params));
+
+                    ParameterInfo[] info = typeof(Effect).GetMethod(MethodName).GetParameters();
+                    ArrayList ReadyParams = new ArrayList();
+                    for (int j = 0; j < info.Length; j++)
+                          ReadyParams.Add(Convert.ChangeType(Params[j], info[j].ParameterType));
+
+                    card.effects.Add(new ParametredAction(typeof(Effect).GetMethod(MethodName), ReadyParams.ToArray(), typeof(Effect)));
                 }
                 Cards.Add(card);
             }
@@ -56,6 +64,12 @@ namespace GameTester
             card.uid = Guid.NewGuid();
             ImageItem item = ImageBase.AddImage(cardView, card.Header, card.Description);
             card.ImageRef = item.uid;
+            Cards.Add(card);
+            return card.uid;
+        }
+        public Guid AddNewCardToBase(Card card)
+        {
+            card.uid = Guid.NewGuid();
             Cards.Add(card);
             return card.uid;
         }
@@ -94,10 +108,10 @@ namespace GameTester
                 var Image = doc.CreateElement("Image"); Image.InnerText = card.ImageRef.ToString();
                 var EffectBlock = doc.CreateElement("Effects");
 
-                foreach (Effect effect in card.effects)
+                foreach (ParametredAction effect in card.effects)
                 {
                     var currentEffect = doc.CreateElement("Effect");
-                    var EffectName = doc.CreateElement("Name"); EffectName.InnerText = effect.effectMethod.Method.Name;
+                    var EffectName = doc.CreateElement("Name"); EffectName.InnerText = effect.link.Name;
                     var Parameters = doc.CreateElement("Parameters");
                     EffectBlock.AppendChild(currentEffect);
                     currentEffect.AppendChild(EffectName);
@@ -105,7 +119,7 @@ namespace GameTester
 
                     for (int i = 0; i < effect.Params.Count; i++)
                     {
-                        var param = doc.CreateElement("Param"); param.InnerText = (String)effect.Params[i];
+                        var param = doc.CreateElement("Param"); param.InnerText = (String)Convert.ChangeType(effect.Params[i],typeof(string));
                         Parameters.AppendChild(param);
                     }
 
@@ -157,7 +171,7 @@ namespace GameTester
         /// <returns></returns>
         public ImageItem AddImage(Image image, string Name, string Description)
         {
-            ImageItem OUT = new ImageItem();
+             ImageItem OUT = new ImageItem();
 
             FileStream fs = new FileStream(pathImageBase, FileMode.Append);
             using (MemoryStream ms = new MemoryStream())

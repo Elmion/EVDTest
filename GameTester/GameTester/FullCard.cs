@@ -16,10 +16,15 @@ namespace GameTester
         public FullCard(Card card)
         {
             InitializeComponent();
+            LoadCard(card);
+        }
+        public void LoadCard(Card card)
+        {
             this.card = card;
             tbDescription.Text = card.Description;
             lHeader.Text = card.Header;
-            pImage.BackgroundImage = CardManager.ImagesStorage[card.ImageRef];
+            pImage.BackgroundImage = CardBase.Instance.GetImage(card.ImageRef);
+            card.effects.ForEach(x => lbEffects.Items.Add(x.Name));
         }
     }
 }

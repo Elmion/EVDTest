@@ -15,13 +15,12 @@ namespace GameTester
         public string Description;
         public string Header;
         public Guid ImageRef;
-        public List<Effect> effects;
-
+        public List<ParametredAction> effects;
         public void Click()
         {
             for (int i = 0; i < effects.Count; i++)
             {
-                effects[i].DoEffect();
+                effects[i].Run(Effect.Instance);
             }
         }
         public object Clone()

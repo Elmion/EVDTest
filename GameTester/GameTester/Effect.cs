@@ -8,18 +8,7 @@ namespace GameTester
     [Serializable]
     public class Effect
     {
-        public Delegate effectMethod;
-        public List<object> Params;
-
-        public Effect(string Name, List<object> Params)
-        {
-            this.effectMethod = Delegate.CreateDelegate(typeof(Action<List<object>>), this, typeof(Effect).GetMethod(Name));
-            this.Params = Params;
-        }
-        public void DoEffect()
-        {
-            effectMethod.DynamicInvoke(Params);
-        }
+        public static Effect Instance = new Effect();
 
         public void Effect1(List<object> input)
         {
@@ -27,9 +16,7 @@ namespace GameTester
         }
         public void Effect2(string s1, int dsd, int dasd)
         {
-           //Console.WriteLine(input[1] + " " + input[0]);
         }
-
         /// <summary>
         /// Изменяет именованый ресурс на значение . Если его нет то предварительно, он будет создан с нулевым значением
         /// </summary>
@@ -49,8 +36,8 @@ namespace GameTester
     public class ParametredAction
     {
         Type ActionType;
-        MethodInfo link;
-        List<object> Params;
+        public MethodInfo link;
+        public List<object> Params;
         public string Name
         {
             get

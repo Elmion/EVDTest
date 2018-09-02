@@ -32,6 +32,7 @@
             this.tbDescription = new System.Windows.Forms.TextBox();
             this.bClose = new System.Windows.Forms.Button();
             this.pImage = new System.Windows.Forms.PictureBox();
+            this.lbEffects = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.pImage)).BeginInit();
             this.SuspendLayout();
             // 
@@ -74,11 +75,20 @@
             this.pImage.TabIndex = 0;
             this.pImage.TabStop = false;
             // 
+            // lbEffects
+            // 
+            this.lbEffects.FormattingEnabled = true;
+            this.lbEffects.Location = new System.Drawing.Point(148, 50);
+            this.lbEffects.Name = "lbEffects";
+            this.lbEffects.Size = new System.Drawing.Size(275, 95);
+            this.lbEffects.TabIndex = 4;
+            // 
             // FullCard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(428, 315);
+            this.Controls.Add(this.lbEffects);
             this.Controls.Add(this.bClose);
             this.Controls.Add(this.tbDescription);
             this.Controls.Add(this.lHeader);
@@ -97,5 +107,6 @@
         private System.Windows.Forms.Label lHeader;
         private System.Windows.Forms.TextBox tbDescription;
         private System.Windows.Forms.Button bClose;
+        private System.Windows.Forms.ListBox lbEffects;
     }
 }

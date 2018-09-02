@@ -75,6 +75,12 @@
       <DependentUpon>CardCreator.cs</DependentUpon>
     </Compile>
     <Compile Include="CardManager.cs" />
+    <Compile Include="CardsCatalog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CardsCatalog.Designer.cs">
+      <DependentUpon>CardsCatalog.cs</DependentUpon>
+    </Compile>
     <Compile Include="CardView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -111,6 +117,9 @@
     </Compile>
     <EmbeddedResource Include="CardCreator.resx">
       <DependentUpon>CardCreator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CardsCatalog.resx">
+      <DependentUpon>CardsCatalog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CardView.resx">
       <DependentUpon>CardView.cs</DependentUpon>

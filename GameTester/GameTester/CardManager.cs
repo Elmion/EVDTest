@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Xml;
 using System.Drawing;
+using System.Reflection;
+using System.Collections;
 
 namespace GameTester
 {
@@ -27,7 +29,7 @@ namespace GameTester
                 card.ImageRef = GetImage(XMLCardDescription.SelectSingleNode("Image").InnerText);
 
                 //Заполняем эффекты
-                card.effects = new List<Effect>();
+                card.effects = new List<ParametredAction>();
                 foreach (XmlNode EffectXML in XMLCardDescription.SelectSingleNode("Effects").ChildNodes)
                 {
                     XmlNode EffectParamsNode = EffectXML.SelectSingleNode("Parameters");
@@ -37,7 +39,13 @@ namespace GameTester
                         Params.Add(EffectParamsNode.ChildNodes[i].InnerText);
                     }
                     string MethodName = EffectXML.SelectSingleNode("Name").InnerText;
-                    card.effects.Add(new Effect(MethodName, Params));
+
+                    ParameterInfo[] info = typeof(Effect).GetMethod(MethodName).GetParameters();
+                    ArrayList ReadyParams = new ArrayList();
+                    for (int j = 0; j < info.Length; j++)
+                        ReadyParams.Add(Convert.ChangeType(Params[j], info[j].ParameterType));
+
+                    card.effects.Add(new ParametredAction(typeof(Effect).GetMethod(MethodName), ReadyParams.ToArray(), typeof(Effect)));
                 }
                 Decka.Add(card);
             }

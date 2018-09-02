@@ -15,7 +15,14 @@ namespace GameTester
         public MainForm()
         {
             InitializeComponent();
-            ucCM.Init(typeof(Effect));
+            using (CardsCatalog cc = new CardsCatalog())
+            {
+                cc.ShowDialog();
+                if(cc.DialogResult == DialogResult.Cancel)
+                {
+
+                }
+            }
             //Effect ef = new Effect("ChangeResurce", new List<object>() { "adasd", "11" });
             // Card c = new Card() { access = new Access(), Description = "kzkzczxcz", effects = new List<Effect>() { ef }, Header = "Тест" };
             //b.AddNewCardToBase(c, Image.FromFile(@"E:\Buffer\Heart.png"));
