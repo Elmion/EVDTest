@@ -24,6 +24,7 @@ namespace GameTester
             tbDescription.Text = card.Description;
             lHeader.Text = card.Header;
             pImage.BackgroundImage = CardBase.Instance.GetImage(card.ImageRef);
+            lbEffects.Items.Clear();
             card.effects.ForEach(x => lbEffects.Items.Add(x.Name));
         }
     }

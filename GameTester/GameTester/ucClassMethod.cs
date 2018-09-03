@@ -12,6 +12,9 @@ using System.Collections;
 
 namespace GameTester
 {
+    //TODO Выравнивание колонок в форме
+    //TODO Контроль заполнения формы
+
     public partial class ucClassMethod : UserControl
     {
         List<Control> DopControlsInForm;

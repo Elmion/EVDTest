@@ -68,6 +68,7 @@
             this.lbCards.Size = new System.Drawing.Size(221, 581);
             this.lbCards.TabIndex = 0;
             this.lbCards.SelectedIndexChanged += new System.EventHandler(this.lbCards_SelectedIndexChanged);
+            this.lbCards.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lbCards_MouseDoubleClick);
             // 
             // bNew
             // 
@@ -108,6 +109,7 @@
             this.Name = "CardsCatalog";
             this.Text = "CardsCatalog";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CardsCatalog_FormClosing);
+            this.Move += new System.EventHandler(this.CardsCatalog_Move);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();

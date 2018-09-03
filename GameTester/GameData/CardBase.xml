@@ -3,11 +3,34 @@
     <uid>dbcca3b2-18b7-4145-af5c-e9c447ff2380</uid>
     <Header>Ntadas</Header>
     <Description>adasd</Description>
-    <Image>68c5b6ee-b7ca-4e36-913c-393e29a560de</Image>
+    <Image>9499e450-81d3-467b-b331-55c12ea11b67</Image>
     <Effects>
       <Effect>
         <Name>ChangeResurce</Name>
         <Parameters>
+          <Param>2</Param>
+          <Param>3</Param>
+        </Parameters>
+      </Effect>
+    </Effects>
+  </Card>
+  <Card>
+    <uid>cdda7d94-a36a-4bb9-b886-a23f79fc0d11</uid>
+    <Header>kjxvckjvxckl</Header>
+    <Description>sdlkjdksljflkjfsdlkjsdflkj</Description>
+    <Image>8395b427-3a06-4233-b4f0-39ee15cc90fd</Image>
+    <Effects>
+      <Effect>
+        <Name>ChangeResurce</Name>
+        <Parameters>
+          <Param>1</Param>
+          <Param>2</Param>
+        </Parameters>
+      </Effect>
+      <Effect>
+        <Name>Effect2</Name>
+        <Parameters>
+          <Param>1</Param>
           <Param>2</Param>
           <Param>3</Param>
         </Parameters>

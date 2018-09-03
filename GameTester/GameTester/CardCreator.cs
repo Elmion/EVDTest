@@ -10,6 +10,8 @@ using System.Windows.Forms;
 
 namespace GameTester
 {
+//TODO добавить именование эффекта
+
     public partial class CardCreator : Form
     {
         Dictionary<string,ParametredAction> parametredActions;
@@ -65,7 +67,8 @@ namespace GameTester
         }
         private void LbAddedEffect_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ucCM.LoadEffect(parametredActions[(string)lbAddedEffect.SelectedItem]);
+            if(lbAddedEffect.SelectedIndex != -1)
+                    ucCM.LoadEffect(parametredActions[(string)lbAddedEffect.SelectedItem]);
         }
         private void AddToList_Click(object sender, EventArgs e)
         {
