@@ -58,7 +58,7 @@ namespace GameTester
                     Header = tbHeader.Text,
                     Description = tbDiscription.Text,
                     effects = parametredActions.Values.ToList(),
-                    ImageRef = CardBase.Instance.ImageBase.AddImage(picCard.BackgroundImage, tbHeader.Text, tbDiscription.Text).uid
+                    ImageRef = picCard.BackgroundImage != null ? CardBase.Instance.ImageBase.AddImage(picCard.BackgroundImage, tbHeader.Text, tbDiscription.Text).uid : new Guid()
                 };
             }
             return EditedCard;

@@ -25,7 +25,7 @@ namespace GameTester
             if (!File.Exists(ConfigurationManager.AppSettings["XMLCardBasePath"])) return;
 
             XmlDocument doc = new XmlDocument();
-           
+            
             doc.Load(ConfigurationManager.AppSettings["XMLCardBasePath"]); 
             foreach (XmlNode XMLCardDescription in doc.GetElementsByTagName("Card"))
             {
@@ -134,7 +134,7 @@ namespace GameTester
             }
             doc.AppendChild(root);
             doc.Save(ConfigurationManager.AppSettings["XMLCardBasePath"]);
-            ImageBase.SaveLibrary();
+            ImageBase.ReBuild();
         }
     }
     public class ImageFile
@@ -161,6 +161,34 @@ namespace GameTester
                 };
                 Images.Add(item);
             }
+        }
+        public void ReBuild()
+        {
+            List<Guid> LifedItems = Images.Select(x => x.uid)
+                                         .Intersect(CardBase.Instance.Cards.Select(x => x.ImageRef)).ToList();
+            Dictionary<Guid, Image> dic = new Dictionary<Guid, Image>();
+            Images.Where(x => LifedItems.Contains(x.uid)).ToList().ForEach(x => dic.Add(x.uid, GetImage(x.uid)));
+
+            File.Delete(pathImageBase);
+            File.Delete(pathImageBaseDescription);
+            List<ImageItem> toDel = Images.Where(x => !LifedItems.Contains(x.uid)).ToList();
+            foreach (var del in toDel) Images.Remove(del);
+
+            FileStream fs = new FileStream(pathImageBase, FileMode.Append);
+            foreach (ImageItem im in Images)
+            {
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    dic[im.uid].Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                    byte[] arrayImage = ms.ToArray();
+                    im.FilePosition = fs.Length;
+                    im.LengthFile = ms.Length;
+                    fs.Write(arrayImage, 0, arrayImage.Length);
+
+                }
+            }
+           fs.Close();
+            SaveLibrary();
         }
         /// <summary>
         /// Добавляет к библиотеке Images изображение и возвращает его библиотченое описание
