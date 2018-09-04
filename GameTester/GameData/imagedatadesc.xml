@@ -1,16 +1,9 @@
 <Root>
   <Image>
-    <UID>5ba8ef2c-ece0-47d7-98a8-7bbd65ab572b</UID>
-    <Name>т1</Name>
-    <Description>фывфвфвфы</Description>
+    <UID>a36b808f-89cd-4518-9b44-8aeeefe45606</UID>
+    <Name>тест</Name>
+    <Description>вфывфывфыв</Description>
     <FilePosition>0</FilePosition>
-    <LengthFile>5807</LengthFile>
-  </Image>
-  <Image>
-    <UID>1d929ebc-1e21-48b9-ab20-e4f98a7cff6f</UID>
-    <Name>sadasd</Name>
-    <Description>asdasdasd</Description>
-    <FilePosition>5807</FilePosition>
-    <LengthFile>4839</LengthFile>
+    <LengthFile>3632</LengthFile>
   </Image>
 </Root>

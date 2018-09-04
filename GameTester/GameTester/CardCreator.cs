@@ -13,16 +13,19 @@ namespace GameTester
 
     public partial class CardCreator : Form
     {
-        Dictionary<string,ParametredAction> parametredActions;
         bool PicChanged = false; //флаг что картинка была изменена
         public Card EditedCard = null;
+        ucListActions<Effect> ucEffects;
+        ucListActions<Access> ucAccess;
         public CardCreator()
         {
             InitializeComponent();
-            ucCM.Init(typeof(Effect));
-            parametredActions = new Dictionary<string, ParametredAction>();
-            lbAddedEffect.SelectedIndexChanged += LbAddedEffect_SelectedIndexChanged;
-            lbAddedEffect.DisplayMember = "Name";
+            ucEffects = new ucListActions<Effect>();
+            ucAccess = new ucListActions<Access>();
+            ucEffects.Parent = groopEffect;
+            ucAccess.Parent = groupCondition;
+            ucEffects.Location = new Point(0, 20);
+            ucAccess.Location = new Point(0, 20);
         }
 
         public void LoadThisCard(Card card)
@@ -30,14 +33,12 @@ namespace GameTester
             tbHeader.Text = card.Header;
             tbDiscription.Text = card.Description;
             picCard.BackgroundImage = CardBase.Instance.GetImage(card.ImageRef);
-
-            parametredActions.Clear();
-            lbAddedEffect.Items.Clear();
-
-            card.effects.ForEach(x => lbAddedEffect.Items.Add(x));
+            ucEffects.Actions = card.effects;
+            ucAccess.Actions = card.accesses;
             PicChanged = false;
             EditedCard = card;
         }
+
         public Card SaveCard()
         {
             if (EditedCard != null)
@@ -47,49 +48,21 @@ namespace GameTester
                 {
                     EditedCard.ImageRef  = CardBase.Instance.ImageBase.AddImage (picCard.BackgroundImage, tbHeader.Text, tbDiscription.Text).uid;
                 }
-                EditedCard.Header = tbHeader.Text;
-                EditedCard.Description = tbDiscription.Text;
-                EditedCard.effects = lbAddedEffect.Items.Cast<ParametredAction>().ToList();
             }
             else
             {
                 //Новая карта
                 EditedCard = new Card()
                 {
-                    Header = tbHeader.Text,
-                    Description = tbDiscription.Text,
-                    effects = lbAddedEffect.Items.Cast<ParametredAction>().ToList(),
                     ImageRef = picCard.BackgroundImage != null ? CardBase.Instance.ImageBase.AddImage(picCard.BackgroundImage, tbHeader.Text, tbDiscription.Text).uid : new Guid()
                 };
             }
+            EditedCard.Header = tbHeader.Text;
+            EditedCard.Description = tbDiscription.Text;
+            EditedCard.effects = ucEffects.Actions;
+            EditedCard.accesses = ucAccess.Actions;
             return EditedCard;
         }
-        private void LbAddedEffect_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if(lbAddedEffect.SelectedIndex != -1)
-                    ucCM.LoadEffect((ParametredAction)lbAddedEffect.SelectedItem);
-        }
-        private void AddToList_Click(object sender, EventArgs e)
-        {
-            ParametredAction pa = ucCM.GetAction();
-            if (pa == null ) return;
-            if (lbAddedEffect.SelectedIndex != -1 && ((ParametredAction)lbAddedEffect.SelectedItem).Name == pa.Name)
-            {
-                lbAddedEffect.Items[lbAddedEffect.Items.IndexOf(lbAddedEffect.SelectedItem)] = pa;
-            }
-            else
-            {
-                lbAddedEffect.Items.Add(pa);
-            }
-        }
-        private void RemoveSelected_Click(object sender, EventArgs e)
-        {
-            if(lbAddedEffect.SelectedIndex != -1)
-            {
-                lbAddedEffect.Items.Remove(lbAddedEffect.SelectedItem);
-            }
-        }
-
         private void bNewPic_Click(object sender, EventArgs e)
         {
             using (OpenFileDialog fo = new OpenFileDialog())

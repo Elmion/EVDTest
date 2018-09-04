@@ -32,13 +32,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tbDiscription = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.lbAddedEffect = new System.Windows.Forms.ListBox();
-            this.AddToList = new System.Windows.Forms.Button();
-            this.RemoveSelected = new System.Windows.Forms.Button();
             this.bOk = new System.Windows.Forms.Button();
             this.bNewPic = new System.Windows.Forms.Button();
             this.picCard = new System.Windows.Forms.PictureBox();
-            this.ucCM = new GameTester.ucClassMethod();
+            this.groopEffect = new System.Windows.Forms.GroupBox();
+            this.groupCondition = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.picCard)).BeginInit();
             this.SuspendLayout();
             // 
@@ -75,39 +73,11 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Название";
             // 
-            // lbAddedEffect
-            // 
-            this.lbAddedEffect.FormattingEnabled = true;
-            this.lbAddedEffect.Location = new System.Drawing.Point(12, 229);
-            this.lbAddedEffect.Name = "lbAddedEffect";
-            this.lbAddedEffect.Size = new System.Drawing.Size(150, 290);
-            this.lbAddedEffect.TabIndex = 4;
-            // 
-            // AddToList
-            // 
-            this.AddToList.Location = new System.Drawing.Point(168, 339);
-            this.AddToList.Name = "AddToList";
-            this.AddToList.Size = new System.Drawing.Size(40, 50);
-            this.AddToList.TabIndex = 6;
-            this.AddToList.Text = "Add";
-            this.AddToList.UseVisualStyleBackColor = true;
-            this.AddToList.Click += new System.EventHandler(this.AddToList_Click);
-            // 
-            // RemoveSelected
-            // 
-            this.RemoveSelected.Location = new System.Drawing.Point(168, 395);
-            this.RemoveSelected.Name = "RemoveSelected";
-            this.RemoveSelected.Size = new System.Drawing.Size(40, 50);
-            this.RemoveSelected.TabIndex = 6;
-            this.RemoveSelected.Text = "Remove";
-            this.RemoveSelected.UseVisualStyleBackColor = true;
-            this.RemoveSelected.Click += new System.EventHandler(this.RemoveSelected_Click);
-            // 
             // bOk
             // 
-            this.bOk.Location = new System.Drawing.Point(416, 525);
+            this.bOk.Location = new System.Drawing.Point(869, 15);
             this.bOk.Name = "bOk";
-            this.bOk.Size = new System.Drawing.Size(75, 23);
+            this.bOk.Size = new System.Drawing.Size(105, 64);
             this.bOk.TabIndex = 7;
             this.bOk.Text = "OK";
             this.bOk.UseVisualStyleBackColor = true;
@@ -132,24 +102,35 @@
             this.picCard.TabIndex = 0;
             this.picCard.TabStop = false;
             // 
-            // ucCM
+            // groopEffect
             // 
-            this.ucCM.Location = new System.Drawing.Point(212, 230);
-            this.ucCM.Name = "ucCM";
-            this.ucCM.Size = new System.Drawing.Size(279, 289);
-            this.ucCM.TabIndex = 5;
+            this.groopEffect.BackColor = System.Drawing.Color.Silver;
+            this.groopEffect.Location = new System.Drawing.Point(2, 219);
+            this.groopEffect.Name = "groopEffect";
+            this.groopEffect.Size = new System.Drawing.Size(489, 319);
+            this.groopEffect.TabIndex = 9;
+            this.groopEffect.TabStop = false;
+            this.groopEffect.Text = "Эффекты";
+            // 
+            // groupCondition
+            // 
+            this.groupCondition.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.groupCondition.Location = new System.Drawing.Point(497, 219);
+            this.groupCondition.Name = "groupCondition";
+            this.groupCondition.Size = new System.Drawing.Size(486, 319);
+            this.groupCondition.TabIndex = 10;
+            this.groupCondition.TabStop = false;
+            this.groupCondition.Text = "Условия";
             // 
             // CardCreator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(503, 552);
+            this.ClientSize = new System.Drawing.Size(986, 542);
+            this.Controls.Add(this.groupCondition);
+            this.Controls.Add(this.groopEffect);
             this.Controls.Add(this.bNewPic);
             this.Controls.Add(this.bOk);
-            this.Controls.Add(this.RemoveSelected);
-            this.Controls.Add(this.AddToList);
-            this.Controls.Add(this.ucCM);
-            this.Controls.Add(this.lbAddedEffect);
             this.Controls.Add(this.tbDiscription);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -170,11 +151,9 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox tbDiscription;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ListBox lbAddedEffect;
-        private ucClassMethod ucCM;
-        private System.Windows.Forms.Button AddToList;
-        private System.Windows.Forms.Button RemoveSelected;
         private System.Windows.Forms.Button bOk;
         private System.Windows.Forms.Button bNewPic;
+        private System.Windows.Forms.GroupBox groopEffect;
+        private System.Windows.Forms.GroupBox groupCondition;
     }
 }

@@ -1,43 +1,35 @@
 <root>
   <Card>
-    <uid>0e9fd15d-acc8-419e-8a8e-7fe11d0d2a35</uid>
-    <Header>т1</Header>
-    <Description>фывфвфвфы</Description>
-    <Image>5ba8ef2c-ece0-47d7-98a8-7bbd65ab572b</Image>
+    <uid>0d12cab4-d2a1-4b1a-bea1-b54e9982870c</uid>
+    <Header>тест</Header>
+    <Description>вфывфывфыв</Description>
+    <Image>a36b808f-89cd-4518-9b44-8aeeefe45606</Image>
     <Effects>
       <Effect>
-        <Name>т1</Name>
-        <MethodName>ChangeResurce</MethodName>
-        <Parameters>
-          <Param>фывф</Param>
-          <Param>1</Param>
-        </Parameters>
-      </Effect>
-      <Effect>
-        <Name>т2</Name>
-        <MethodName>Effect2</MethodName>
-        <Parameters>
-          <Param>1</Param>
-          <Param>2</Param>
-          <Param>4</Param>
-        </Parameters>
-      </Effect>
-    </Effects>
-  </Card>
-  <Card>
-    <uid>dc7c83d5-32f8-497b-9d5d-ea7b13a98850</uid>
-    <Header>sadasd</Header>
-    <Description>asdasdasd</Description>
-    <Image>1d929ebc-1e21-48b9-ab20-e4f98a7cff6f</Image>
-    <Effects>
-      <Effect>
-        <Name>EnumTest1</Name>
+        <Name>EnumTest</Name>
         <MethodName>EnumTest</MethodName>
         <Parameters>
           <Param>Second</Param>
-          <Param>12</Param>
+          <Param>123</Param>
+        </Parameters>
+      </Effect>
+      <Effect>
+        <Name>ChangeResurce</Name>
+        <MethodName>ChangeResurce</MethodName>
+        <Parameters>
+          <Param>112</Param>
+          <Param>12121</Param>
         </Parameters>
       </Effect>
     </Effects>
+    <Accesses>
+      <Access>
+        <Name>CheckAge</Name>
+        <MethodName>CheckAge</MethodName>
+        <Parameters>
+          <Param>1223</Param>
+        </Parameters>
+      </Access>
+    </Accesses>
   </Card>
 </root>

@@ -66,6 +66,35 @@ namespace GameTester
                     pa.Name = EffectName;
                     card.effects.Add(pa);
                 }
+
+                //Заполняем доступы
+                card.accesses = new List<ParametredAction>();
+                foreach (XmlNode AccessXML in XMLCardDescription.SelectSingleNode("Accesses").ChildNodes)
+                {
+                    XmlNode AccessParamsNode = AccessXML.SelectSingleNode("Parameters");
+                    List<object> Params = new List<object>();
+                    for (int i = 0; i < AccessParamsNode.ChildNodes.Count; i++)
+                    {
+                        Params.Add(AccessParamsNode.ChildNodes[i].InnerText);
+                    }
+                    string AccessName = AccessXML.SelectSingleNode("Name").InnerText;
+                    string MethodName = AccessXML.SelectSingleNode("MethodName").InnerText;
+
+                    ParameterInfo[] info = typeof(Access).GetMethod(MethodName).GetParameters();
+                    ArrayList ReadyParams = new ArrayList();
+                    for (int j = 0; j < info.Length; j++)
+                    {
+
+                        if (!info[j].ParameterType.IsEnum)
+                            ReadyParams.Add(Convert.ChangeType(Params[j], info[j].ParameterType));
+                        else
+                            ReadyParams.Add(Enum.Parse(info[j].ParameterType, (string)Params[j]));
+
+                    }
+                    ParametredAction pa = new ParametredAction(typeof(Access).GetMethod(MethodName), ReadyParams.ToArray(), typeof(Access));
+                    pa.Name = AccessName;
+                    card.accesses.Add(pa);
+                }
                 Cards.Add(card);
             }
         }
@@ -116,8 +145,8 @@ namespace GameTester
                 var uid = doc.CreateElement("uid"); uid.InnerText = card.uid.ToString();
                 var Description = doc.CreateElement("Description"); Description.InnerText = card.Description;
                 var Image = doc.CreateElement("Image"); Image.InnerText = card.ImageRef.ToString();
-                var EffectBlock = doc.CreateElement("Effects");
 
+                var EffectBlock = doc.CreateElement("Effects");
                 foreach (ParametredAction effect in card.effects)
                 {
                     var currentEffect = doc.CreateElement("Effect");
@@ -136,12 +165,34 @@ namespace GameTester
                     }
 
                 }
+
+                var AccessBlock = doc.CreateElement("Accesses");
+                foreach (ParametredAction access in card.accesses)
+                {
+                    var currentAccess = doc.CreateElement("Access");
+                    var AccessName = doc.CreateElement("Name"); AccessName.InnerText = access.Name;
+                    var MethodName = doc.CreateElement("MethodName"); MethodName.InnerText = access.link.Name;
+                    var Parameters = doc.CreateElement("Parameters");
+                    AccessBlock.AppendChild(currentAccess);
+                    currentAccess.AppendChild(AccessName);
+                    currentAccess.AppendChild(MethodName);
+                    currentAccess.AppendChild(Parameters);
+
+                    for (int i = 0; i < access.Params.Count; i++)
+                    {
+                        var param = doc.CreateElement("Param"); param.InnerText = (String)Convert.ChangeType(access.Params[i], typeof(string));
+                        Parameters.AppendChild(param);
+                    }
+
+                }
+
                 CardRoot.AppendChild(uid);
                 CardRoot.AppendChild(Header);
                 CardRoot.AppendChild(Description);
                 CardRoot.AppendChild(Image);
                 CardRoot.AppendChild(EffectBlock);
-                
+                CardRoot.AppendChild(AccessBlock);
+
                 root.AppendChild(CardRoot);
             }
             doc.AppendChild(root);

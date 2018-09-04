@@ -43,9 +43,10 @@
             // 
             // gbParameters
             // 
+            this.gbParameters.BackColor = System.Drawing.Color.White;
             this.gbParameters.Location = new System.Drawing.Point(3, 56);
             this.gbParameters.Name = "gbParameters";
-            this.gbParameters.Size = new System.Drawing.Size(273, 243);
+            this.gbParameters.Size = new System.Drawing.Size(273, 234);
             this.gbParameters.TabIndex = 3;
             this.gbParameters.TabStop = false;
             this.gbParameters.Text = "Параметры";

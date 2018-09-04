@@ -11,11 +11,11 @@ namespace GameTester
     public class Card : ICloneable
     {
         public Guid uid;
-        public Access access; 
         public string Description;
         public string Header;
         public Guid ImageRef;
         public List<ParametredAction> effects;
+        public List<ParametredAction> accesses;
         public void Click()
         {
             for (int i = 0; i < effects.Count; i++)
