@@ -50,7 +50,7 @@ namespace GameTester
                 }
             }
         }
-        private void bEdit_Click(object sender, EventArgs e)
+        private void Edit()
         {
 
             //Создаём окно креатора
@@ -82,16 +82,20 @@ namespace GameTester
         {
             CardBase.Instance.SaveLibrary();
         }
-
         private void lbCards_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             if (lbCards.SelectedIndex != -1)
-                bEdit_Click(null, null);
+                Edit();
         }
         private void CardsCatalog_Move(object sender, EventArgs e)
         {
             if (c != null && c.Visible)
                 c.Location = new Point(this.Location.X + this.Width, this.Location.Y);
+        }
+        
+        private void bSave_Click(object sender, EventArgs e)
+        {
+            CardBase.Instance.SaveLibrary();
         }
     }
 }

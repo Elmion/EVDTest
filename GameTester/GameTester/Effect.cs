@@ -30,36 +30,17 @@ namespace GameTester
                 index = HeroTemp.Resurces.Count - 1;
             }
             HeroTemp.Resurces[index].Value += ChangingValue;
-
+        }
+        public void EnumTest(TestEnum testEnu, int trala)
+        {
+            Console.WriteLine(testEnu.ToString());
         }
     }
-    public class ParametredAction
+    public enum TestEnum
     {
-        Type ActionType;
-        public MethodInfo link;
-        public List<object> Params;
-        public string Name
-        {
-            get
-            {
-                return link.Name;
-            }
-        }
-        public  ParametredAction(MethodInfo link, object[] Params,Type ActionType)
-        {
-            this.link = link;
-            this.Params = new List<object>(Params);
-            this.ActionType = ActionType;
-        }
-        public void Run(object target)
-        {
-            ParameterInfo[] info = link.GetParameters();
-            ArrayList ReadyParams = new ArrayList();
-            for (int i = 0; i < info.Length; i++)
-            {
-                 ReadyParams.Add(Convert.ChangeType(Params[i], info[i].ParameterType));
-            }
-            link.Invoke(target,ReadyParams.ToArray());
-        }
+        First,
+        Second,
+        Three
     }
+
 }

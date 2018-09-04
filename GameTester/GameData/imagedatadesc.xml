@@ -1,9 +1,16 @@
 <Root>
   <Image>
-    <UID>68c5b6ee-b7ca-4e36-913c-393e29a560de</UID>
-    <Name>Ntadas</Name>
-    <Description>adasd</Description>
+    <UID>5ba8ef2c-ece0-47d7-98a8-7bbd65ab572b</UID>
+    <Name>т1</Name>
+    <Description>фывфвфвфы</Description>
     <FilePosition>0</FilePosition>
-    <LengthFile>207754</LengthFile>
+    <LengthFile>5807</LengthFile>
+  </Image>
+  <Image>
+    <UID>1d929ebc-1e21-48b9-ab20-e4f98a7cff6f</UID>
+    <Name>sadasd</Name>
+    <Description>asdasdasd</Description>
+    <FilePosition>5807</FilePosition>
+    <LengthFile>4839</LengthFile>
   </Image>
 </Root>

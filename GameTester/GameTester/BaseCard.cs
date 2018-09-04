@@ -47,14 +47,24 @@ namespace GameTester
                     {
                         Params.Add(EffectParamsNode.ChildNodes[i].InnerText);
                     }
-                    string MethodName = EffectXML.SelectSingleNode("Name").InnerText;
+                    string EffectName = EffectXML.SelectSingleNode("Name").InnerText;
+                    string MethodName = EffectXML.SelectSingleNode("MethodName").InnerText;
 
                     ParameterInfo[] info = typeof(Effect).GetMethod(MethodName).GetParameters();
                     ArrayList ReadyParams = new ArrayList();
                     for (int j = 0; j < info.Length; j++)
-                          ReadyParams.Add(Convert.ChangeType(Params[j], info[j].ParameterType));
+                    {
 
-                    card.effects.Add(new ParametredAction(typeof(Effect).GetMethod(MethodName), ReadyParams.ToArray(), typeof(Effect)));
+                        if (!info[j].ParameterType.IsEnum)
+                            ReadyParams.Add(Convert.ChangeType(Params[j], info[j].ParameterType));
+                        else
+                            ReadyParams.Add(Enum.Parse(info[j].ParameterType, (string)Params[j]));
+                        
+                    }
+                          
+                    ParametredAction pa = new ParametredAction(typeof(Effect).GetMethod(MethodName), ReadyParams.ToArray(), typeof(Effect));
+                    pa.Name = EffectName;
+                    card.effects.Add(pa);
                 }
                 Cards.Add(card);
             }
@@ -111,10 +121,12 @@ namespace GameTester
                 foreach (ParametredAction effect in card.effects)
                 {
                     var currentEffect = doc.CreateElement("Effect");
-                    var EffectName = doc.CreateElement("Name"); EffectName.InnerText = effect.link.Name;
+                    var EffectName = doc.CreateElement("Name"); EffectName.InnerText = effect.Name;
+                    var MethodName = doc.CreateElement("MethodName"); MethodName.InnerText = effect.link.Name;
                     var Parameters = doc.CreateElement("Parameters");
                     EffectBlock.AppendChild(currentEffect);
                     currentEffect.AppendChild(EffectName);
+                    currentEffect.AppendChild(MethodName);
                     currentEffect.AppendChild(Parameters);
 
                     for (int i = 0; i < effect.Params.Count; i++)

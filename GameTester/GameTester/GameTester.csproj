@@ -107,6 +107,7 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="HeroTemp.cs" />
+    <Compile Include="ParametredAction.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ucClassMethod.cs">

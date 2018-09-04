@@ -30,7 +30,6 @@
         {
             this.bGameStart = new System.Windows.Forms.Button();
             this.bChangeDesk = new System.Windows.Forms.Button();
-            this.ucCM = new GameTester.ucClassMethod();
             this.SuspendLayout();
             // 
             // bGameStart
@@ -41,6 +40,7 @@
             this.bGameStart.TabIndex = 0;
             this.bGameStart.Text = "Game";
             this.bGameStart.UseVisualStyleBackColor = true;
+            this.bGameStart.Click += new System.EventHandler(this.bGameStart_Click);
             // 
             // bChangeDesk
             // 
@@ -48,22 +48,15 @@
             this.bChangeDesk.Name = "bChangeDesk";
             this.bChangeDesk.Size = new System.Drawing.Size(108, 62);
             this.bChangeDesk.TabIndex = 1;
-            this.bChangeDesk.Text = "Правка карт";
+            this.bChangeDesk.Text = "Каталог";
             this.bChangeDesk.UseVisualStyleBackColor = true;
-            // 
-            // ucCM
-            // 
-            this.ucCM.Location = new System.Drawing.Point(21, 101);
-            this.ucCM.Name = "ucCM";
-            this.ucCM.Size = new System.Drawing.Size(279, 273);
-            this.ucCM.TabIndex = 2;
+            this.bChangeDesk.Click += new System.EventHandler(this.bChangeDesk_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(392, 415);
-            this.Controls.Add(this.ucCM);
+            this.ClientSize = new System.Drawing.Size(243, 84);
             this.Controls.Add(this.bChangeDesk);
             this.Controls.Add(this.bGameStart);
             this.Name = "MainForm";
@@ -76,6 +69,5 @@
 
         private System.Windows.Forms.Button bGameStart;
         private System.Windows.Forms.Button bChangeDesk;
-        private ucClassMethod ucCM;
     }
 }

@@ -30,9 +30,9 @@
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.lbCards = new System.Windows.Forms.ListBox();
-            this.bNew = new System.Windows.Forms.Button();
-            this.bEdit = new System.Windows.Forms.Button();
             this.bDelete = new System.Windows.Forms.Button();
+            this.bSave = new System.Windows.Forms.Button();
+            this.bNew = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -53,7 +53,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.bDelete);
-            this.splitContainer1.Panel2.Controls.Add(this.bEdit);
+            this.splitContainer1.Panel2.Controls.Add(this.bSave);
             this.splitContainer1.Panel2.Controls.Add(this.bNew);
             this.splitContainer1.Size = new System.Drawing.Size(221, 649);
             this.splitContainer1.SplitterDistance = 581;
@@ -70,26 +70,6 @@
             this.lbCards.SelectedIndexChanged += new System.EventHandler(this.lbCards_SelectedIndexChanged);
             this.lbCards.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lbCards_MouseDoubleClick);
             // 
-            // bNew
-            // 
-            this.bNew.Location = new System.Drawing.Point(3, 6);
-            this.bNew.Name = "bNew";
-            this.bNew.Size = new System.Drawing.Size(65, 55);
-            this.bNew.TabIndex = 0;
-            this.bNew.Text = "Новая";
-            this.bNew.UseVisualStyleBackColor = true;
-            this.bNew.Click += new System.EventHandler(this.bNew_Click);
-            // 
-            // bEdit
-            // 
-            this.bEdit.Location = new System.Drawing.Point(74, 6);
-            this.bEdit.Name = "bEdit";
-            this.bEdit.Size = new System.Drawing.Size(75, 55);
-            this.bEdit.TabIndex = 1;
-            this.bEdit.Text = "Правка";
-            this.bEdit.UseVisualStyleBackColor = true;
-            this.bEdit.Click += new System.EventHandler(this.bEdit_Click);
-            // 
             // bDelete
             // 
             this.bDelete.Location = new System.Drawing.Point(155, 6);
@@ -99,6 +79,26 @@
             this.bDelete.Text = "Удалить";
             this.bDelete.UseVisualStyleBackColor = true;
             this.bDelete.Click += new System.EventHandler(this.bDelete_Click);
+            // 
+            // bSave
+            // 
+            this.bSave.Location = new System.Drawing.Point(74, 6);
+            this.bSave.Name = "bSave";
+            this.bSave.Size = new System.Drawing.Size(75, 55);
+            this.bSave.TabIndex = 1;
+            this.bSave.Text = "Сохранить";
+            this.bSave.UseVisualStyleBackColor = true;
+            this.bSave.Click += new System.EventHandler(this.bSave_Click);
+            // 
+            // bNew
+            // 
+            this.bNew.Location = new System.Drawing.Point(3, 6);
+            this.bNew.Name = "bNew";
+            this.bNew.Size = new System.Drawing.Size(65, 55);
+            this.bNew.TabIndex = 0;
+            this.bNew.Text = "Новая";
+            this.bNew.UseVisualStyleBackColor = true;
+            this.bNew.Click += new System.EventHandler(this.bNew_Click);
             // 
             // CardsCatalog
             // 
@@ -124,6 +124,6 @@
         private System.Windows.Forms.ListBox lbCards;
         private System.Windows.Forms.Button bNew;
         private System.Windows.Forms.Button bDelete;
-        private System.Windows.Forms.Button bEdit;
+        private System.Windows.Forms.Button bSave;
     }
 }

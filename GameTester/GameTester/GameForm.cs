@@ -20,10 +20,7 @@ namespace GameTester
             InitializeComponent();
             MainForm = this;
             View = new List<CardView>();
-
-            CardManager.LoadCards("CardDescription.xml");
             LoadNewScreen();
-
         }
         private void Card_MouseDown(object sender, MouseEventArgs e)
         {

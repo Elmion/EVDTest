@@ -22,7 +22,7 @@ namespace GameTester
             lHeader.Text = card.Header;
             this.owner = owner;
             tbCardDescription.Text = card.Description;
-            picCard.BackgroundImage = CardManager.ImagesStorage[card.ImageRef];
+            picCard.BackgroundImage = CardBase.Instance.GetImage(card.ImageRef);
             this.MouseDown += CardView_MouseDown;
             this.MouseUp += CardView_MouseUp;
         }

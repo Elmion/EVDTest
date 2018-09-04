@@ -30,34 +30,44 @@
         {
             this.cbMethods = new System.Windows.Forms.ComboBox();
             this.gbParameters = new System.Windows.Forms.GroupBox();
+            this.tbName = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // cbMethods
             // 
             this.cbMethods.FormattingEnabled = true;
-            this.cbMethods.Location = new System.Drawing.Point(3, 3);
+            this.cbMethods.Location = new System.Drawing.Point(3, 29);
             this.cbMethods.Name = "cbMethods";
             this.cbMethods.Size = new System.Drawing.Size(273, 21);
             this.cbMethods.TabIndex = 2;
             // 
             // gbParameters
             // 
-            this.gbParameters.Location = new System.Drawing.Point(3, 30);
+            this.gbParameters.Location = new System.Drawing.Point(3, 56);
             this.gbParameters.Name = "gbParameters";
-            this.gbParameters.Size = new System.Drawing.Size(273, 256);
+            this.gbParameters.Size = new System.Drawing.Size(273, 243);
             this.gbParameters.TabIndex = 3;
             this.gbParameters.TabStop = false;
             this.gbParameters.Text = "Параметры";
+            // 
+            // tbName
+            // 
+            this.tbName.Location = new System.Drawing.Point(3, 3);
+            this.tbName.Name = "tbName";
+            this.tbName.Size = new System.Drawing.Size(272, 20);
+            this.tbName.TabIndex = 4;
             // 
             // ucClassMethod
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.tbName);
             this.Controls.Add(this.gbParameters);
             this.Controls.Add(this.cbMethods);
             this.Name = "ucClassMethod";
-            this.Size = new System.Drawing.Size(279, 289);
+            this.Size = new System.Drawing.Size(279, 303);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -65,5 +75,6 @@
 
         private System.Windows.Forms.ComboBox cbMethods;
         private System.Windows.Forms.GroupBox gbParameters;
+        private System.Windows.Forms.TextBox tbName;
     }
 }

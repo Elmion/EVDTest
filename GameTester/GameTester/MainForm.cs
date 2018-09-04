@@ -15,14 +15,9 @@ namespace GameTester
         public MainForm()
         {
             InitializeComponent();
-            using (CardsCatalog cc = new CardsCatalog())
-            {
-                cc.ShowDialog();
-                if(cc.DialogResult == DialogResult.Cancel)
-                {
 
-                }
-            }
+
+
             //Effect ef = new Effect("ChangeResurce", new List<object>() { "adasd", "11" });
             // Card c = new Card() { access = new Access(), Description = "kzkzczxcz", effects = new List<Effect>() { ef }, Header = "Тест" };
             //b.AddNewCardToBase(c, Image.FromFile(@"E:\Buffer\Heart.png"));
@@ -31,7 +26,21 @@ namespace GameTester
             //BaseCard.Instance.ImageBase.AddImage(d, "hand", "asdadasdasd");
             //BaseCard.Instance.ImageBase.SaveLibrary();
             //pbTest.BackgroundImage = BaseCard.Instance.ImageBase.GetImage(Guid.Parse("df57a62e-f1f3-4cda-8310-e340728ac727"));
+        }
 
+        private void bChangeDesk_Click(object sender, EventArgs e)
+        {
+            using (CardsCatalog cc = new CardsCatalog())
+            {
+                cc.ShowDialog();
+            }
+        }
+        private void bGameStart_Click(object sender, EventArgs e)
+        {
+            using (GameForm cc = new GameForm())
+            {
+                cc.ShowDialog();
+            }
         }
     }
 }
