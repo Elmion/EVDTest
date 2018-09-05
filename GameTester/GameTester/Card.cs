@@ -23,6 +23,16 @@ namespace GameTester
                 effects[i].Run(Effect.Instance);
             }
         }
+        public bool Check()
+        {
+            bool OUT = true;
+            if (accesses.Count == 0) OUT = false; //если доступов нет то такая карта не играется.????
+            for (int i = 0; i < accesses.Count; i++)
+            {
+               OUT = OUT && (bool)accesses[i].RunAsFunc(Access.Instance);
+            }
+            return OUT;
+        }
         public object Clone()
         {
             Card OUT;

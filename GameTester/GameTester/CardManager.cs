@@ -1,13 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.IO;
-using System.Xml;
-using System.Drawing;
-using System.Reflection;
-using System.Collections;
 
 namespace GameTester
 {
@@ -17,9 +8,15 @@ namespace GameTester
         {
             Card[] cards = new Card[numCards];
 
-            for (int i = 0; i < numCards; i++)
-            {
-                cards[i] = (Card)CardBase.Instance.Cards[rnd.Next(CardBase.Instance.Cards.Count)].Clone();
+            int countInHand = 0;
+            while(countInHand <9)
+            { 
+                Card erlyCard = (Card)CardBase.Instance.Cards[rnd.Next(CardBase.Instance.Cards.Count)].Clone();
+                if (erlyCard.Check())
+                {
+                    cards[countInHand] = erlyCard;
+                    countInHand++;
+                }
             }
             return cards;
         }

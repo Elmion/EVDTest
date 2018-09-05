@@ -15,9 +15,6 @@ namespace GameTester
         public MainForm()
         {
             InitializeComponent();
-
-
-
             //Effect ef = new Effect("ChangeResurce", new List<object>() { "adasd", "11" });
             // Card c = new Card() { access = new Access(), Description = "kzkzczxcz", effects = new List<Effect>() { ef }, Header = "Тест" };
             //b.AddNewCardToBase(c, Image.FromFile(@"E:\Buffer\Heart.png"));
@@ -27,7 +24,6 @@ namespace GameTester
             //BaseCard.Instance.ImageBase.SaveLibrary();
             //pbTest.BackgroundImage = BaseCard.Instance.ImageBase.GetImage(Guid.Parse("df57a62e-f1f3-4cda-8310-e340728ac727"));
         }
-
         private void bChangeDesk_Click(object sender, EventArgs e)
         {
             using (CardsCatalog cc = new CardsCatalog())

@@ -44,5 +44,15 @@ namespace GameTester
             }
             link.Invoke(target, ReadyParams.ToArray());
         }
+        public object RunAsFunc(object target)
+        {
+            ParameterInfo[] info = link.GetParameters();
+            ArrayList ReadyParams = new ArrayList();
+            for (int i = 0; i < info.Length; i++)
+            {
+                ReadyParams.Add(Convert.ChangeType(Params[i], info[i].ParameterType));
+            }
+            return link.Invoke(target, ReadyParams.ToArray());
+        }
     }
 }
