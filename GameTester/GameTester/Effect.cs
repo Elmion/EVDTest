@@ -10,12 +10,13 @@ namespace GameTester
     {
         public static Effect Instance = new Effect();
 
-        public void Effect1(List<object> input)
+        public void ToConsole(string Text)
         {
-            Console.WriteLine(input[0]);
+            Console.WriteLine(Text);
         }
-        public void Effect2(string s1, int dsd, int dasd)
+        public void ChangeTime(int Minutes)
         {
+            HeroTemp.Instance.time.AddTime(Minutes);
         }
         /// <summary>
         /// Изменяет именованый ресурс на значение . Если его нет то предварительно, он будет создан с нулевым значением

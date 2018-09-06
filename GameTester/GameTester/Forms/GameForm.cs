@@ -29,7 +29,6 @@ namespace GameTester
                 ((CardView)sender).card.Click();
                 LoadNewScreen();
                 UpdateScreen();
-                HeroTemp.Instance.game_move++;
             }          
         }
         public void LoadNewScreen()
@@ -52,7 +51,8 @@ namespace GameTester
         }
         public void UpdateScreen()
         {
-           tbAge.Text =  HeroTemp.Instance.Age.ToString();
+            tbAge.Text =  HeroTemp.Instance.time.NewBornAge.ToString();
+            tbTime.Text = HeroTemp.Instance.time.CurentTimeToString();
             if (HeroTemp.Instance.Resurces.Find(x => x.Name == Resurces.Health).Value > 100)
                             HeroTemp.Instance.Resurces.Find(x => x.Name == Resurces.Health).Value = 100;
                 pbHealth.Value = HeroTemp.Instance.Resurces.Find(x => x.Name == Resurces.Health).Value;

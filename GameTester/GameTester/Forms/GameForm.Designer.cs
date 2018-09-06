@@ -106,9 +106,9 @@
             this.tbTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 23F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tbTime.Location = new System.Drawing.Point(63, 12);
             this.tbTime.Name = "tbTime";
-            this.tbTime.Size = new System.Drawing.Size(129, 42);
+            this.tbTime.Size = new System.Drawing.Size(85, 42);
             this.tbTime.TabIndex = 7;
-            this.tbTime.Text = "99:99:99";
+            this.tbTime.Text = "99:99";
             // 
             // label1
             // 

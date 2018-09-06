@@ -9,27 +9,18 @@ namespace GameTester
    public class HeroTemp
     {
         public static readonly HeroTemp Instance = new HeroTemp();
-        public int game_move = 1;
-        public int Age
-        {
-            get
-            {
 
-                return (int)Math.Ceiling(19f * (1 - Math.Exp(-game_move/400f)))-1;
-            }
-        }
+        public TimeLine time = new TimeLine();
         public List<Resurce> Resurces = new List<Resurce>();
         public List<InvetoryItem> Inventory = new List<InvetoryItem>();
 
         public HeroTemp()
         {
-            game_move = 1;
             Resurces.Add(new Resurce { Name = GameTester.Resurces.Health, Value = 100 });
             Resurces.Add(new Resurce { Name = GameTester.Resurces.Money, Value = 0 });
         }
         public HeroTemp(int move)
         {
-            game_move = move;
             Resurces.Add(new Resurce { Name = GameTester.Resurces.Health, Value = 100 });
             Resurces.Add(new Resurce { Name = GameTester.Resurces.Money, Value = 0 });
         }
@@ -48,7 +39,6 @@ namespace GameTester
     public enum Resurces
     {
         Money,
-        Health,
-        Time
+        Health
     }
 }

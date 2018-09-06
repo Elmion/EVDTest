@@ -13,6 +13,13 @@
           <Param>-1</Param>
         </Parameters>
       </Effect>
+      <Effect>
+        <Name>ChangeTime</Name>
+        <MethodName>ChangeTime</MethodName>
+        <Parameters>
+          <Param>10</Param>
+        </Parameters>
+      </Effect>
     </Effects>
     <Accesses>
       <Access>
@@ -43,6 +50,13 @@
         <Parameters>
           <Param>Health</Param>
           <Param>2</Param>
+        </Parameters>
+      </Effect>
+      <Effect>
+        <Name>ChangeTime</Name>
+        <MethodName>ChangeTime</MethodName>
+        <Parameters>
+          <Param>30</Param>
         </Parameters>
       </Effect>
     </Effects>
@@ -78,11 +92,10 @@
         </Parameters>
       </Effect>
       <Effect>
-        <Name>TimeDown</Name>
-        <MethodName>ChangeResurce</MethodName>
+        <Name>ChangeTime</Name>
+        <MethodName>ChangeTime</MethodName>
         <Parameters>
-          <Param>Time</Param>
-          <Param>-3</Param>
+          <Param>180</Param>
         </Parameters>
       </Effect>
     </Effects>
@@ -117,6 +130,13 @@
           <Param>2</Param>
         </Parameters>
       </Effect>
+      <Effect>
+        <Name>ChangeTime</Name>
+        <MethodName>ChangeTime</MethodName>
+        <Parameters>
+          <Param>15</Param>
+        </Parameters>
+      </Effect>
     </Effects>
     <Accesses>
       <Access>
@@ -140,6 +160,13 @@
         <Parameters>
           <Param>Health</Param>
           <Param>-2</Param>
+        </Parameters>
+      </Effect>
+      <Effect>
+        <Name>ChangeTime</Name>
+        <MethodName>ChangeTime</MethodName>
+        <Parameters>
+          <Param>30</Param>
         </Parameters>
       </Effect>
     </Effects>
@@ -172,6 +199,13 @@
         <Parameters>
           <Param>Health</Param>
           <Param>-3</Param>
+        </Parameters>
+      </Effect>
+      <Effect>
+        <Name>ChangeTime</Name>
+        <MethodName>ChangeTime</MethodName>
+        <Parameters>
+          <Param>60</Param>
         </Parameters>
       </Effect>
     </Effects>

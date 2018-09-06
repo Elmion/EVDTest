@@ -30,6 +30,7 @@
         {
             this.bGameStart = new System.Windows.Forms.Button();
             this.bChangeDesk = new System.Windows.Forms.Button();
+            this.bTests = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // bGameStart
@@ -52,12 +53,23 @@
             this.bChangeDesk.UseVisualStyleBackColor = true;
             this.bChangeDesk.Click += new System.EventHandler(this.bChangeDesk_Click);
             // 
+            // bTests
+            // 
+            this.bTests.Location = new System.Drawing.Point(12, 86);
+            this.bTests.Name = "bTests";
+            this.bTests.Size = new System.Drawing.Size(108, 63);
+            this.bTests.TabIndex = 0;
+            this.bTests.Text = "Тесты";
+            this.bTests.UseVisualStyleBackColor = true;
+            this.bTests.Click += new System.EventHandler(this.bTests_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(243, 84);
+            this.ClientSize = new System.Drawing.Size(243, 161);
             this.Controls.Add(this.bChangeDesk);
+            this.Controls.Add(this.bTests);
             this.Controls.Add(this.bGameStart);
             this.Name = "MainForm";
             this.Text = "GameForm";
@@ -69,5 +81,6 @@
 
         private System.Windows.Forms.Button bGameStart;
         private System.Windows.Forms.Button bChangeDesk;
+        private System.Windows.Forms.Button bTests;
     }
 }

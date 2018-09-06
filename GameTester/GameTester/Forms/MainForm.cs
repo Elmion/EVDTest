@@ -38,5 +38,9 @@ namespace GameTester
                 cc.ShowDialog();
             }
         }
+        private void bTests_Click(object sender, EventArgs e)
+        {
+            TimeLine line = new TimeLine();
+        }
     }
 }
