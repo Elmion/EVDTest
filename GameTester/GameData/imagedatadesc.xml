@@ -1,9 +1,44 @@
 <Root>
   <Image>
-    <UID>a36b808f-89cd-4518-9b44-8aeeefe45606</UID>
-    <Name>тест</Name>
-    <Description>вфывфывфыв</Description>
+    <UID>c7970fb1-54c5-4c98-b7c2-cdc685d40966</UID>
+    <Name>Крик</Name>
+    <Description>Дави на нервы родителям</Description>
     <FilePosition>0</FilePosition>
-    <LengthFile>3632</LengthFile>
+    <LengthFile>4839</LengthFile>
+  </Image>
+  <Image>
+    <UID>42e734e6-15f3-4dfb-9edb-2d1ad70ecb08</UID>
+    <Name>Кушать!</Name>
+    <Description>Кушать хочу</Description>
+    <FilePosition>4839</FilePosition>
+    <LengthFile>34145</LengthFile>
+  </Image>
+  <Image>
+    <UID>19dab6ae-9950-4ba0-90e7-cf0cd170ade0</UID>
+    <Name>Играть</Name>
+    <Description>Игрушка погремушка</Description>
+    <FilePosition>38984</FilePosition>
+    <LengthFile>13790</LengthFile>
+  </Image>
+  <Image>
+    <UID>51ce2cab-9cb4-4a5e-b093-c8d6e8686312</UID>
+    <Name>Купаться</Name>
+    <Description>Буль буль</Description>
+    <FilePosition>52774</FilePosition>
+    <LengthFile>28431</LengthFile>
+  </Image>
+  <Image>
+    <UID>13220272-dfc0-4253-a0a9-7a695324f712</UID>
+    <Name>Ползать</Name>
+    <Description>Учусь ползать</Description>
+    <FilePosition>81205</FilePosition>
+    <LengthFile>38355</LengthFile>
+  </Image>
+  <Image>
+    <UID>af896cb7-5b97-4057-8b78-7ce99e5e2619</UID>
+    <Name>Учусь ходить</Name>
+    <Description>Ща встану как</Description>
+    <FilePosition>119560</FilePosition>
+    <LengthFile>9752</LengthFile>
   </Image>
 </Root>

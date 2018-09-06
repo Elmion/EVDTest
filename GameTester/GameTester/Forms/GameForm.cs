@@ -27,10 +27,15 @@ namespace GameTester
             if(e.Button == MouseButtons.Left)
             {
                 ((CardView)sender).card.Click();
+                LoadNewScreen();
+                UpdateScreen();
+                HeroTemp.Instance.game_move++;
             }          
         }
         public void LoadNewScreen()
         {
+            View.ForEach(x => x.Dispose());
+            View.Clear();
             Point[] points = new Point[] { new Point(2,0),new Point(130,0), new Point(257,0),
                                            new Point(2,125),new Point(130,125), new Point(257,125),
                                            new Point(2,250),new Point(130,250), new Point(257,250)};
@@ -43,6 +48,15 @@ namespace GameTester
                 View[i].Parent = pBoard;
                 View[i].MouseDown += Card_MouseDown;
             }
+
+        }
+        public void UpdateScreen()
+        {
+           tbAge.Text =  HeroTemp.Instance.Age.ToString();
+            if (HeroTemp.Instance.Resurces.Find(x => x.Name == Resurces.Health).Value > 100)
+                            HeroTemp.Instance.Resurces.Find(x => x.Name == Resurces.Health).Value = 100;
+                pbHealth.Value = HeroTemp.Instance.Resurces.Find(x => x.Name == Resurces.Health).Value;
+           lMoney.Text = HeroTemp.Instance.Resurces.Find(x => x.Name == Resurces.Money).Value.ToString();
         }
     }
 }

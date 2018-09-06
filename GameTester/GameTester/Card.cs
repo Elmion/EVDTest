@@ -12,7 +12,7 @@ namespace GameTester
     {
         public Guid uid;
         public string Description;
-        public string Header;
+        public string Header { get; set; }
         public Guid ImageRef;
         public List<ParametredAction> effects;
         public List<ParametredAction> accesses;

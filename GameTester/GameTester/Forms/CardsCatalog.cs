@@ -17,18 +17,20 @@ namespace GameTester
         public CardsCatalog()
         {
             InitializeComponent();
-            CardBase.Instance.Cards.ForEach(x => lbCards.Items.Add(x.Header));
+            CardBase.Instance.Cards.ForEach(x => lbCards.Items.Add(x));
+            lbCards.DisplayMember = "Header";
         }
         private void lbCards_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (lbCards.SelectedIndex == -1) return;
             if (c == null || c.IsDisposed)
             { 
-            Card findedCard = CardBase.Instance.Cards.Find(x => x.Header == (string)lbCards.SelectedItem);
+            Card findedCard = CardBase.Instance.Cards.Find(x => x == lbCards.SelectedItem);
                 if(findedCard != null)
                  c = new FullCard(findedCard);
             }
             else
-                c.LoadCard(CardBase.Instance.Cards.Find(x => x.Header == (string)lbCards.SelectedItem));
+                c.LoadCard(CardBase.Instance.Cards.Find(x => x == lbCards.SelectedItem));
             if (c != null && !c.Visible)
             {
                 c.Show(this);
@@ -45,7 +47,7 @@ namespace GameTester
                 if (cc.ShowDialog() == DialogResult.OK)                {
                     CardBase.Instance.AddNewCardToBase(cc.EditedCard);
                     lbCards.Items.Clear();
-                    CardBase.Instance.Cards.ForEach(x => lbCards.Items.Add(x.Header));
+                    CardBase.Instance.Cards.ForEach(x => lbCards.Items.Add(x));
                     cc.Close();
                 }
             }
@@ -59,23 +61,25 @@ namespace GameTester
                 cc.StartPosition = FormStartPosition.Manual;
                 cc.Location = new Point(this.Location.X + this.Width, this.Location.Y);
 
-                cc.LoadThisCard(CardBase.Instance.Cards.Find(x => x.Header == (string)lbCards.SelectedItem));
+                cc.LoadThisCard(CardBase.Instance.Cards.Find(x => x == lbCards.SelectedItem));
                 
                 if (cc.ShowDialog() == DialogResult.OK)
                 {
-                    int index = CardBase.Instance.Cards.FindIndex(x => x.Header == (string)lbCards.SelectedItem);
-                    CardBase.Instance.Cards[index] = cc.EditedCard;
+                    //int index = CardBase.Instance.Cards.FindIndex(x => x.Header == (string)lbCards.SelectedItem);
+                    CardBase.Instance.Cards[lbCards.SelectedIndex] = cc.EditedCard;
                     cc.Close();
                     lbCards_SelectedIndexChanged(null, null);
+                    if(lbCards.Items.Count > 0)
+                            { lbCards.Items[0] = lbCards.Items[0]; } //Перерисовка текстов в Листбокс
                 }
             }
         }
         private void bDelete_Click(object sender, EventArgs e)
         {   //закрываем обзорное окно
             //Создаём окно креатора
-            CardBase.Instance.Cards.Remove(CardBase.Instance.Cards.Find(x => x.Header == (string)lbCards.SelectedItem));
+            CardBase.Instance.Cards.Remove(CardBase.Instance.Cards.Find(x => x == lbCards.SelectedItem));
             lbCards.Items.Clear();
-            CardBase.Instance.Cards.ForEach(x => lbCards.Items.Add(x.Header));
+            CardBase.Instance.Cards.ForEach(x => lbCards.Items.Add(x));
         }
 
         private void CardsCatalog_FormClosing(object sender, FormClosingEventArgs e)

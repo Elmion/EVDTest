@@ -163,9 +163,7 @@ namespace GameTester
                         var param = doc.CreateElement("Param"); param.InnerText = (String)Convert.ChangeType(effect.Params[i],typeof(string));
                         Parameters.AppendChild(param);
                     }
-
                 }
-
                 var AccessBlock = doc.CreateElement("Accesses");
                 foreach (ParametredAction access in card.accesses)
                 {

@@ -5,9 +5,19 @@ namespace GameTester
     public class Access
     {
         public static Access Instance = new Access();
-        public bool CheckAge(int ageCondition)
+        public bool AgeGreaterOrEqual(int ageCondition)
         {
-            return true;
+           if(HeroTemp.Instance.Age >= ageCondition)
+             return true;
+           else
+             return false;
+        }
+        public bool AgeSmaller(int ageCondition)
+        {
+            if (HeroTemp.Instance.Age < ageCondition)
+                return true;
+            else
+                return false;
         }
     }
 }

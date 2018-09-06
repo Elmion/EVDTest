@@ -1,33 +1,193 @@
 <root>
   <Card>
-    <uid>0d12cab4-d2a1-4b1a-bea1-b54e9982870c</uid>
-    <Header>тест</Header>
-    <Description>вфывфывфыв</Description>
-    <Image>a36b808f-89cd-4518-9b44-8aeeefe45606</Image>
+    <uid>91fbd167-0769-42fd-bf37-12b472e6c290</uid>
+    <Header>Крик</Header>
+    <Description>Дави на нервы родителям</Description>
+    <Image>c7970fb1-54c5-4c98-b7c2-cdc685d40966</Image>
     <Effects>
       <Effect>
-        <Name>EnumTest</Name>
-        <MethodName>EnumTest</MethodName>
-        <Parameters>
-          <Param>Second</Param>
-          <Param>123</Param>
-        </Parameters>
-      </Effect>
-      <Effect>
-        <Name>ChangeResurce</Name>
+        <Name>Силы уменьшаются</Name>
         <MethodName>ChangeResurce</MethodName>
         <Parameters>
-          <Param>112</Param>
-          <Param>12121</Param>
+          <Param>Health</Param>
+          <Param>-1</Param>
         </Parameters>
       </Effect>
     </Effects>
     <Accesses>
       <Access>
-        <Name>CheckAge</Name>
-        <MethodName>CheckAge</MethodName>
+        <Name>ВозрастБольше</Name>
+        <MethodName>AgeGreaterOrEqual</MethodName>
         <Parameters>
-          <Param>1223</Param>
+          <Param>0</Param>
+        </Parameters>
+      </Access>
+      <Access>
+        <Name>ВозрастМеньше 2х</Name>
+        <MethodName>AgeSmaller</MethodName>
+        <Parameters>
+          <Param>2</Param>
+        </Parameters>
+      </Access>
+    </Accesses>
+  </Card>
+  <Card>
+    <uid>d462d849-026b-4960-a97e-2bd1800c9d88</uid>
+    <Header>Кушать!</Header>
+    <Description>Кушать хочу</Description>
+    <Image>42e734e6-15f3-4dfb-9edb-2d1ad70ecb08</Image>
+    <Effects>
+      <Effect>
+        <Name>ChangeResurce</Name>
+        <MethodName>ChangeResurce</MethodName>
+        <Parameters>
+          <Param>Health</Param>
+          <Param>2</Param>
+        </Parameters>
+      </Effect>
+    </Effects>
+    <Accesses>
+      <Access>
+        <Name>AgeGreaterOrEqual</Name>
+        <MethodName>AgeGreaterOrEqual</MethodName>
+        <Parameters>
+          <Param>0</Param>
+        </Parameters>
+      </Access>
+      <Access>
+        <Name>AgeSmaller</Name>
+        <MethodName>AgeSmaller</MethodName>
+        <Parameters>
+          <Param>2</Param>
+        </Parameters>
+      </Access>
+    </Accesses>
+  </Card>
+  <Card>
+    <uid>80c7dbda-c0bf-4325-916a-188f3f46e30c</uid>
+    <Header>Играть</Header>
+    <Description>Игрушка погремушка</Description>
+    <Image>19dab6ae-9950-4ba0-90e7-cf0cd170ade0</Image>
+    <Effects>
+      <Effect>
+        <Name>PowerDown</Name>
+        <MethodName>ChangeResurce</MethodName>
+        <Parameters>
+          <Param>Health</Param>
+          <Param>-1</Param>
+        </Parameters>
+      </Effect>
+      <Effect>
+        <Name>TimeDown</Name>
+        <MethodName>ChangeResurce</MethodName>
+        <Parameters>
+          <Param>Time</Param>
+          <Param>-3</Param>
+        </Parameters>
+      </Effect>
+    </Effects>
+    <Accesses>
+      <Access>
+        <Name>AgeGreaterOrEqual</Name>
+        <MethodName>AgeGreaterOrEqual</MethodName>
+        <Parameters>
+          <Param>0</Param>
+        </Parameters>
+      </Access>
+      <Access>
+        <Name>AgeSmaller</Name>
+        <MethodName>AgeSmaller</MethodName>
+        <Parameters>
+          <Param>2</Param>
+        </Parameters>
+      </Access>
+    </Accesses>
+  </Card>
+  <Card>
+    <uid>e3304c07-c529-4f58-a456-5015b98b783d</uid>
+    <Header>Купаться</Header>
+    <Description>Буль буль</Description>
+    <Image>51ce2cab-9cb4-4a5e-b093-c8d6e8686312</Image>
+    <Effects>
+      <Effect>
+        <Name>ChangeResurce</Name>
+        <MethodName>ChangeResurce</MethodName>
+        <Parameters>
+          <Param>Health</Param>
+          <Param>2</Param>
+        </Parameters>
+      </Effect>
+    </Effects>
+    <Accesses>
+      <Access>
+        <Name>AgeGreaterOrEqual</Name>
+        <MethodName>AgeGreaterOrEqual</MethodName>
+        <Parameters>
+          <Param>0</Param>
+        </Parameters>
+      </Access>
+    </Accesses>
+  </Card>
+  <Card>
+    <uid>a07f697d-4383-4498-b309-3967bfdc77b9</uid>
+    <Header>Ползать</Header>
+    <Description>Учусь ползать</Description>
+    <Image>13220272-dfc0-4253-a0a9-7a695324f712</Image>
+    <Effects>
+      <Effect>
+        <Name>Затраты энергии</Name>
+        <MethodName>ChangeResurce</MethodName>
+        <Parameters>
+          <Param>Health</Param>
+          <Param>-2</Param>
+        </Parameters>
+      </Effect>
+    </Effects>
+    <Accesses>
+      <Access>
+        <Name>AgeGreaterOrEqual</Name>
+        <MethodName>AgeGreaterOrEqual</MethodName>
+        <Parameters>
+          <Param>0</Param>
+        </Parameters>
+      </Access>
+      <Access>
+        <Name>AgeSmaller</Name>
+        <MethodName>AgeSmaller</MethodName>
+        <Parameters>
+          <Param>1</Param>
+        </Parameters>
+      </Access>
+    </Accesses>
+  </Card>
+  <Card>
+    <uid>4da7f38a-6a84-476f-bcbf-7b1724731a7b</uid>
+    <Header>Учусь ходить</Header>
+    <Description>Ща встану как</Description>
+    <Image>af896cb7-5b97-4057-8b78-7ce99e5e2619</Image>
+    <Effects>
+      <Effect>
+        <Name>Затраты энергии</Name>
+        <MethodName>ChangeResurce</MethodName>
+        <Parameters>
+          <Param>Health</Param>
+          <Param>-3</Param>
+        </Parameters>
+      </Effect>
+    </Effects>
+    <Accesses>
+      <Access>
+        <Name>AgeGreaterOrEqual</Name>
+        <MethodName>AgeGreaterOrEqual</MethodName>
+        <Parameters>
+          <Param>1</Param>
+        </Parameters>
+      </Access>
+      <Access>
+        <Name>AgeSmaller</Name>
+        <MethodName>AgeSmaller</MethodName>
+        <Parameters>
+          <Param>2</Param>
         </Parameters>
       </Access>
     </Accesses>
