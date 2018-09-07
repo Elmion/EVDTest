@@ -42,7 +42,7 @@ namespace GameTester
         {
             get
             {
-                return (int)Math.Ceiling(19f * (1 - Math.Exp(-Days / 400f))) - 1;
+                return (int)Math.Ceiling(19f * (1 - Math.Exp(-Days / 200f)))-1;
             }
         }
         public void AddTime(int minutes)

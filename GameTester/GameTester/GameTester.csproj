@@ -81,6 +81,12 @@
     <Compile Include="Forms\CardsCatalog.Designer.cs">
       <DependentUpon>CardsCatalog.cs</DependentUpon>
     </Compile>
+    <Compile Include="GraphTestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GraphTestForm.Designer.cs">
+      <DependentUpon>GraphTestForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Hero\TimeLine.cs" />
     <Compile Include="UserControls\CardView.cs">
       <SubType>UserControl</SubType>
@@ -128,6 +134,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CardsCatalog.resx">
       <DependentUpon>CardsCatalog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GraphTestForm.resx">
+      <DependentUpon>GraphTestForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\CardView.resx">
       <DependentUpon>CardView.cs</DependentUpon>
@@ -188,6 +197,11 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\GraphEditor\GraphEditor.csproj">
+      <Project>{b483ac69-c40f-41bd-9575-f5897015fce6}</Project>
+      <Name>GraphEditor</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

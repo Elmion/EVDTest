@@ -40,7 +40,10 @@ namespace GameTester
         }
         private void bTests_Click(object sender, EventArgs e)
         {
-            TimeLine line = new TimeLine();
+            using (GraphTestForm cc = new GraphTestForm())
+            {
+                cc.ShowDialog();
+            }
         }
     }
 }
