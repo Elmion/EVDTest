@@ -28,65 +28,56 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.panel4.SuspendLayout();
+            this.Body = new System.Windows.Forms.Panel();
+            this.lDescription = new System.Windows.Forms.Label();
+            this.cbMethod = new System.Windows.Forms.ComboBox();
+            this.Body.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panel1
+            // Body
             // 
-            this.panel1.BackColor = System.Drawing.Color.DarkRed;
-            this.panel1.Location = new System.Drawing.Point(26, 75);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(115, 30);
-            this.panel1.TabIndex = 0;
+            this.Body.BackColor = System.Drawing.Color.Silver;
+            this.Body.Controls.Add(this.cbMethod);
+            this.Body.Controls.Add(this.lDescription);
+            this.Body.Location = new System.Drawing.Point(34, 3);
+            this.Body.Name = "Body";
+            this.Body.Size = new System.Drawing.Size(273, 264);
+            this.Body.TabIndex = 1;
             // 
-            // panel2
+            // lDescription
             // 
-            this.panel2.BackColor = System.Drawing.Color.White;
-            this.panel2.Location = new System.Drawing.Point(27, 105);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(141, 30);
-            this.panel2.TabIndex = 0;
+            this.lDescription.AutoSize = true;
+            this.lDescription.Location = new System.Drawing.Point(12, 47);
+            this.lDescription.Name = "lDescription";
+            this.lDescription.Size = new System.Drawing.Size(60, 13);
+            this.lDescription.TabIndex = 0;
+            this.lDescription.Text = "Description";
             // 
-            // panel3
+            // cbMethod
             // 
-            this.panel3.BackColor = System.Drawing.Color.White;
-            this.panel3.Location = new System.Drawing.Point(27, 157);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(141, 30);
-            this.panel3.TabIndex = 0;
-            // 
-            // panel4
-            // 
-            this.panel4.Controls.Add(this.panel1);
-            this.panel4.Location = new System.Drawing.Point(59, 3);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(150, 187);
-            this.panel4.TabIndex = 1;
+            this.cbMethod.FormattingEnabled = true;
+            this.cbMethod.Location = new System.Drawing.Point(15, 12);
+            this.cbMethod.Name = "cbMethod";
+            this.cbMethod.Size = new System.Drawing.Size(121, 21);
+            this.cbMethod.TabIndex = 1;
             // 
             // ucGraphNode
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Gray;
-            this.Controls.Add(this.panel3);
-            this.Controls.Add(this.panel4);
-            this.Controls.Add(this.panel2);
+            this.BackColor = System.Drawing.Color.Transparent;
+            this.Controls.Add(this.Body);
             this.Name = "ucGraphNode";
-            this.Size = new System.Drawing.Size(230, 193);
-            this.panel4.ResumeLayout(false);
+            this.Size = new System.Drawing.Size(331, 269);
+            this.Body.ResumeLayout(false);
+            this.Body.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel Body;
+        private System.Windows.Forms.Label lDescription;
+        private System.Windows.Forms.ComboBox cbMethod;
     }
 }

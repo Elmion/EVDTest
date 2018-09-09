@@ -37,6 +37,7 @@
             this.ClientSize = new System.Drawing.Size(650, 471);
             this.Name = "GraphTestForm";
             this.Text = "GraphTestForm";
+            this.Load += new System.EventHandler(this.GraphTestForm_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.GraphTestForm_Paint);
             this.ResumeLayout(false);
 

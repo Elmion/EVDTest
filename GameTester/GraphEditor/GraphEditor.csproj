@@ -44,16 +44,35 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestClass.cs" />
     <Compile Include="ucGraphNode.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="ucGraphNode.Designer.cs">
       <DependentUpon>ucGraphNode.cs</DependentUpon>
     </Compile>
+    <Compile Include="ucParameterOutput.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucParameterOutput.Designer.cs">
+      <DependentUpon>ucParameterOutput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucРarameterInput.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucРarameterInput.Designer.cs">
+      <DependentUpon>ucРarameterInput.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ucGraphNode.resx">
       <DependentUpon>ucGraphNode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucParameterOutput.resx">
+      <DependentUpon>ucParameterOutput.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucРarameterInput.resx">
+      <DependentUpon>ucРarameterInput.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

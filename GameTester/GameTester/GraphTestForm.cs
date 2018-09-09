@@ -20,21 +20,41 @@ namespace GameTester
         public GraphTestForm()
         {
             InitializeComponent();
-            //uc = new ucGraphNode();
-            //uc.Location = new Point(0, 0);
-            //uc.Parent = this;
-            this.DoubleBuffered = true;
-            g = this.CreateGraphics();
-            Invalidate();
-        }
-        
+            uc = new ucGraphNode();
+           uc.Location = new Point(0, 0);
+            uc.Parent = this;
+            // DoubleBuffered = true;
+            //SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+            // g = pb.CreateGraphics();
+            SetStyle(
+            System.Windows.Forms.ControlStyles.UserPaint |
+            System.Windows.Forms.ControlStyles.AllPaintingInWmPaint |
+            System.Windows.Forms.ControlStyles.OptimizedDoubleBuffer,
+            true);
 
+            MouseMove += GraphTestForm_MouseMove;
+        }
+
+        private void GraphTestForm_MouseMove(object sender, MouseEventArgs e)
+        {
+           Invalidate();
+
+        }
 
         private void GraphTestForm_Paint(object sender, PaintEventArgs e)
         {
-            g.DrawLine(new Pen(Brushes.Black), new Point(20, 20), new Point(100, 100));
-            g.DrawBezier(new Pen(Brushes.Aqua), new Point(0, 0), new Point(0, 10), new Point(30, 30), new Point(10, 30));
-            
+            e.Graphics.DrawLine(new Pen(Brushes.Black), new Point(20, 20), new Point(100, 100));
+            e.Graphics.DrawBezier(new Pen(Brushes.Aqua, 3), new Point(20, 20), new Point(20, 0), new Point(100, 0), new Point(MousePosition.X, MousePosition.Y));
+        }
+        private void GraphTestForm_Load(object sender, EventArgs e)
+        {
+
+
+        }
+
+        private void pb_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
