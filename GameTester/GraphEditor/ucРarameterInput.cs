@@ -88,5 +88,14 @@ namespace GraphEditor
             }
             return ctrl;
         }
+
+        private void pbConnectorIn_MouseEnter(object sender, EventArgs e)
+        {
+            pbConnectorIn.BackColor = Color.LightSalmon;
+        }
+        private void pbConnectorIn_MouseLeave(object sender, EventArgs e)
+        {
+            pbConnectorIn.BackColor = Color.DarkRed;
+        }
     }
 }

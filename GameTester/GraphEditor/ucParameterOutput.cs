@@ -13,6 +13,7 @@ namespace GraphEditor
 {
     public partial class UcParameterOutput : UserControl
     {
+        public Action<object> ConnectorActivated;
         public int delta
             {
                 get
@@ -31,10 +32,10 @@ namespace GraphEditor
         public UcParameterOutput()
         {
             InitializeComponent();
-
         }
         public UcParameterOutput(ParameterInfo parameterInfo)
         {
+
             //TODO Высота элеметов
             InitializeComponent();
             this.parameterInfo = parameterInfo;
@@ -43,6 +44,20 @@ namespace GraphEditor
             int XNextControl = (int)lNameType.CreateGraphics().MeasureString(lNameType.Text, lNameType.Font).Width;
 
             this.Width = XNextControl + sc.Panel2.Width+1;
+        }
+
+        private void pbOut_MouseEnter(object sender, EventArgs e)
+        {
+            sc.Panel2.BackColor = Color.Lime;
+        }
+        private void pbOut_MouseLeave(object sender, EventArgs e)
+        {
+            sc.Panel2.BackColor = Color.DarkGreen;
+        }
+
+        private void sc_Panel2_Click(object sender, EventArgs e)
+        {
+            ConnectorActivated(this);
         }
     }
 }

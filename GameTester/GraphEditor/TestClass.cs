@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GraphEditor
 {
-    class TestClass
+    public class TestClass
     {
         string s = string.Empty;
         public TestClass() { }

@@ -47,7 +47,6 @@ namespace GameTester
                 View[i].Parent = pBoard;
                 View[i].MouseDown += Card_MouseDown;
             }
-
         }
         public void UpdateScreen()
         {

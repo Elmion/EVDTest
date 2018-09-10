@@ -30,12 +30,9 @@
         {
             this.sc = new System.Windows.Forms.SplitContainer();
             this.lNameType = new System.Windows.Forms.Label();
-            this.pbOut = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.sc)).BeginInit();
             this.sc.Panel1.SuspendLayout();
-            this.sc.Panel2.SuspendLayout();
             this.sc.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbOut)).BeginInit();
             this.SuspendLayout();
             // 
             // sc
@@ -50,7 +47,11 @@
             // 
             // sc.Panel2
             // 
-            this.sc.Panel2.Controls.Add(this.pbOut);
+            this.sc.Panel2.AllowDrop = true;
+            this.sc.Panel2.BackColor = System.Drawing.Color.DarkGreen;
+            this.sc.Panel2.Click += new System.EventHandler(this.sc_Panel2_Click);
+            this.sc.Panel2.MouseEnter += new System.EventHandler(this.pbOut_MouseEnter);
+            this.sc.Panel2.MouseLeave += new System.EventHandler(this.pbOut_MouseLeave);
             this.sc.Size = new System.Drawing.Size(141, 24);
             this.sc.SplitterDistance = 111;
             this.sc.SplitterWidth = 1;
@@ -65,16 +66,6 @@
             this.lNameType.TabIndex = 0;
             this.lNameType.Text = "lNameType";
             // 
-            // pbOut
-            // 
-            this.pbOut.BackColor = System.Drawing.Color.LimeGreen;
-            this.pbOut.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pbOut.Location = new System.Drawing.Point(0, 0);
-            this.pbOut.Name = "pbOut";
-            this.pbOut.Size = new System.Drawing.Size(29, 24);
-            this.pbOut.TabIndex = 0;
-            this.pbOut.TabStop = false;
-            // 
             // UcParameterOutput
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -84,10 +75,8 @@
             this.Size = new System.Drawing.Size(141, 24);
             this.sc.Panel1.ResumeLayout(false);
             this.sc.Panel1.PerformLayout();
-            this.sc.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.sc)).EndInit();
             this.sc.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pbOut)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -96,6 +85,5 @@
 
         private System.Windows.Forms.SplitContainer sc;
         private System.Windows.Forms.Label lNameType;
-        private System.Windows.Forms.PictureBox pbOut;
     }
 }

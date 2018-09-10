@@ -66,6 +66,8 @@
             this.pbConnectorIn.Size = new System.Drawing.Size(25, 24);
             this.pbConnectorIn.TabIndex = 0;
             this.pbConnectorIn.TabStop = false;
+            this.pbConnectorIn.MouseEnter += new System.EventHandler(this.pbConnectorIn_MouseEnter);
+            this.pbConnectorIn.MouseLeave += new System.EventHandler(this.pbConnectorIn_MouseLeave);
             // 
             // lName
             // 

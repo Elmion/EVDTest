@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.Body = new System.Windows.Forms.Panel();
-            this.lDescription = new System.Windows.Forms.Label();
             this.cbMethod = new System.Windows.Forms.ComboBox();
+            this.lDescription = new System.Windows.Forms.Label();
             this.Body.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -44,22 +44,22 @@
             this.Body.Size = new System.Drawing.Size(273, 264);
             this.Body.TabIndex = 1;
             // 
+            // cbMethod
+            // 
+            this.cbMethod.FormattingEnabled = true;
+            this.cbMethod.Location = new System.Drawing.Point(0, 17);
+            this.cbMethod.Name = "cbMethod";
+            this.cbMethod.Size = new System.Drawing.Size(121, 21);
+            this.cbMethod.TabIndex = 1;
+            // 
             // lDescription
             // 
             this.lDescription.AutoSize = true;
-            this.lDescription.Location = new System.Drawing.Point(12, 47);
+            this.lDescription.Location = new System.Drawing.Point(3, 50);
             this.lDescription.Name = "lDescription";
             this.lDescription.Size = new System.Drawing.Size(60, 13);
             this.lDescription.TabIndex = 0;
             this.lDescription.Text = "Description";
-            // 
-            // cbMethod
-            // 
-            this.cbMethod.FormattingEnabled = true;
-            this.cbMethod.Location = new System.Drawing.Point(15, 12);
-            this.cbMethod.Name = "cbMethod";
-            this.cbMethod.Size = new System.Drawing.Size(121, 21);
-            this.cbMethod.TabIndex = 1;
             // 
             // ucGraphNode
             // 
@@ -68,7 +68,7 @@
             this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.Body);
             this.Name = "ucGraphNode";
-            this.Size = new System.Drawing.Size(331, 269);
+            this.Size = new System.Drawing.Size(331, 273);
             this.Body.ResumeLayout(false);
             this.Body.PerformLayout();
             this.ResumeLayout(false);
