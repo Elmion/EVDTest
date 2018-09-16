@@ -81,12 +81,6 @@
     <Compile Include="Forms\CardsCatalog.Designer.cs">
       <DependentUpon>CardsCatalog.cs</DependentUpon>
     </Compile>
-    <Compile Include="GraphTestForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GraphTestForm.Designer.cs">
-      <DependentUpon>GraphTestForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Hero\TimeLine.cs" />
     <Compile Include="UserControls\CardView.cs">
       <SubType>UserControl</SubType>
@@ -134,9 +128,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CardsCatalog.resx">
       <DependentUpon>CardsCatalog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GraphTestForm.resx">
-      <DependentUpon>GraphTestForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\CardView.resx">
       <DependentUpon>CardView.cs</DependentUpon>

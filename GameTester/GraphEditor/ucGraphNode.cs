@@ -18,14 +18,20 @@ namespace GraphEditor
         const int CONNECTOR = 30;
 
         private List<Control> ucControls = new List<Control>();
-        public Action<object> InitConnect;
-
+        public event Action<object> InitConnect;
+        public event Action<object, Point> Moving;
+        public event Action<List<Control>> MethodChanging;
+        private bool Drag = false;
+        private Point mouseDelta; //смещение мыши при перемещении
         public ucGraphNode()
         {
            
             InitializeComponent();
             cbMethod.SelectedIndexChanged += CbMethod_SelectedIndexChanged;
             cbMethod.DisplayMember = "Name";
+            pMovePanel.MouseDown += DragStart;
+            pMovePanel.MouseMove += DragContinue;
+            pMovePanel.MouseUp += DragStop;
             Rebuild();
         }
         public ucGraphNode(Type t)
@@ -34,13 +40,36 @@ namespace GraphEditor
             cbMethod.SelectedIndexChanged += CbMethod_SelectedIndexChanged;
             cbMethod.DisplayMember = "Name";
             FillControl(t);
-            CbMethod_SelectedIndexChanged(null, null);
+            pMovePanel.MouseDown += DragStart;
+            pMovePanel.MouseMove += DragContinue;
+            pMovePanel.MouseUp += DragStop;
+            Rebuild();
+        }
+
+        private void DragStart(object sender, MouseEventArgs e)
+        {
+            Drag = true;
+            mouseDelta = PointToClient(MousePosition);
+        } 
+        private void DragStop(object sender, MouseEventArgs e)
+        {
+            Drag = false;
+        }
+        private void DragContinue(object sender, MouseEventArgs e)
+        {
+            if (Drag)
+                Moving(this, mouseDelta);
         }
         private void CbMethod_SelectedIndexChanged(object sender, EventArgs e)
         {
+            MethodChanging(ucControls);
             ucControls.ForEach(x => x.Dispose());
             ucControls.Clear();
             Rebuild();
+        }
+        private void DeleteLink(object obj)
+        {
+            MethodChanging(new List<Control>() { (Control)obj });
         }
         private void Rebuild()
         {
@@ -61,6 +90,8 @@ namespace GraphEditor
                 if (!p.IsOut)
                 {
                     UcРarameterInput input = new UcРarameterInput(p);
+                    input.ConnectorActivated += InitConnect;
+                    input.ConnectorDelete += DeleteLink;
                     widths.Add(input.Size.Width);
                     input.Parent = this;
                     input.BringToFront();
@@ -68,8 +99,8 @@ namespace GraphEditor
                 }
                 else
                 {
-                    UcParameterOutput output = new UcParameterOutput(p);
-                        output.ConnectorActivated += InitConnect;
+                   UcParameterOutput output = new UcParameterOutput(p);
+                    output.ConnectorActivated += InitConnect;
                     widths.Add(output.Size.Width);
                     output.Parent = this;
                     output.BringToFront();
@@ -80,8 +111,9 @@ namespace GraphEditor
             if (method.ReturnType.Name != "Void")
             {
                 UcParameterOutput output = new UcParameterOutput(method.ReturnParameter);
-                    output.ConnectorActivated += InitConnect;
-                    output.Location = new Point(Body.Location.X + Body.Size.Width - output.delta, DELTA_TOP + position * CONNECTOR);
+                output.ConnectorActivated += InitConnect;
+ 
+                output.Location = new Point(Body.Location.X + Body.Size.Width - output.delta, DELTA_TOP + position * CONNECTOR);
                 widths.Add(output.Size.Width);
                 output.Parent = this;
                 output.BringToFront();

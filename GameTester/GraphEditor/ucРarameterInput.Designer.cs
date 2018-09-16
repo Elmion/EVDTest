@@ -51,6 +51,7 @@
             // 
             // sc.Panel2
             // 
+            this.sc.Panel2.BackColor = System.Drawing.Color.White;
             this.sc.Panel2.Controls.Add(this.lName);
             this.sc.Size = new System.Drawing.Size(175, 24);
             this.sc.SplitterDistance = 25;
@@ -66,6 +67,7 @@
             this.pbConnectorIn.Size = new System.Drawing.Size(25, 24);
             this.pbConnectorIn.TabIndex = 0;
             this.pbConnectorIn.TabStop = false;
+            this.pbConnectorIn.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pbConnectorIn_MouseClick);
             this.pbConnectorIn.MouseEnter += new System.EventHandler(this.pbConnectorIn_MouseEnter);
             this.pbConnectorIn.MouseLeave += new System.EventHandler(this.pbConnectorIn_MouseLeave);
             // 

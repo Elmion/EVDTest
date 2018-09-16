@@ -43,13 +43,14 @@
             // 
             // sc.Panel1
             // 
+            this.sc.Panel1.BackColor = System.Drawing.Color.White;
             this.sc.Panel1.Controls.Add(this.lNameType);
             // 
             // sc.Panel2
             // 
             this.sc.Panel2.AllowDrop = true;
             this.sc.Panel2.BackColor = System.Drawing.Color.DarkGreen;
-            this.sc.Panel2.Click += new System.EventHandler(this.sc_Panel2_Click);
+            this.sc.Panel2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.sc_Panel2_Click);
             this.sc.Panel2.MouseEnter += new System.EventHandler(this.pbOut_MouseEnter);
             this.sc.Panel2.MouseLeave += new System.EventHandler(this.pbOut_MouseLeave);
             this.sc.Size = new System.Drawing.Size(141, 24);

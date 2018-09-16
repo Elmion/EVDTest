@@ -13,11 +13,20 @@ namespace GraphEditor
 {
     public partial class UcРarameterInput : UserControl
     {
+        public event Action<object> ConnectorActivated;
+        public event Action<object> ConnectorDelete;
         public int delta
         {
             get
             {
                 return sc.Panel1.Width;
+            }
+        }
+        public Type TypeIN
+        {
+            get
+            {
+                return parameterInfo.ParameterType;
             }
         }
         Control control = null;
@@ -31,10 +40,9 @@ namespace GraphEditor
             //TODO Высота элеметов
             InitializeComponent();
             this.parameterInfo = parameterInfo;
-            lName.Text = parameterInfo.Name;
+            lName.Text = parameterInfo.Name +"("+ parameterInfo.ParameterType.ToString().Split('.').Last()+")";
             lName.Location = new Point(0, 4);
             int XNextControl = (int)lName.CreateGraphics().MeasureString(lName.Text, lName.Font).Width;
-
             control = GetControl(parameterInfo.ParameterType, XNextControl);
             control.Parent = sc.Panel2;
             control.Location = new Point( XNextControl, 1);
@@ -88,7 +96,6 @@ namespace GraphEditor
             }
             return ctrl;
         }
-
         private void pbConnectorIn_MouseEnter(object sender, EventArgs e)
         {
             pbConnectorIn.BackColor = Color.LightSalmon;
@@ -96,6 +103,19 @@ namespace GraphEditor
         private void pbConnectorIn_MouseLeave(object sender, EventArgs e)
         {
             pbConnectorIn.BackColor = Color.DarkRed;
+        }
+        private void pbConnectorIn_MouseClick(object sender, MouseEventArgs e)
+        {
+            switch (e.Button)
+            {
+                case MouseButtons.Left:
+                    ConnectorActivated(this);
+                    break;
+                case MouseButtons.Right:
+                    ConnectorDelete(this);
+                    break;
+            }
+
         }
     }
 }

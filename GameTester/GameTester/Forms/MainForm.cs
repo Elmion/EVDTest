@@ -40,7 +40,7 @@ namespace GameTester
         }
         private void bTests_Click(object sender, EventArgs e)
         {
-            using (GraphTestForm cc = new GraphTestForm())
+            using (GraphEditor.fEditor cc = new GraphEditor.fEditor())
             {
                 cc.ShowDialog();
             }

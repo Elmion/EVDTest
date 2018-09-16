@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.Body = new System.Windows.Forms.Panel();
+            this.pMovePanel = new System.Windows.Forms.Panel();
             this.cbMethod = new System.Windows.Forms.ComboBox();
             this.lDescription = new System.Windows.Forms.Label();
             this.Body.SuspendLayout();
@@ -37,6 +38,7 @@
             // Body
             // 
             this.Body.BackColor = System.Drawing.Color.Silver;
+            this.Body.Controls.Add(this.pMovePanel);
             this.Body.Controls.Add(this.cbMethod);
             this.Body.Controls.Add(this.lDescription);
             this.Body.Location = new System.Drawing.Point(34, 3);
@@ -44,12 +46,21 @@
             this.Body.Size = new System.Drawing.Size(273, 264);
             this.Body.TabIndex = 1;
             // 
+            // pMovePanel
+            // 
+            this.pMovePanel.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.pMovePanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pMovePanel.Location = new System.Drawing.Point(0, 0);
+            this.pMovePanel.Name = "pMovePanel";
+            this.pMovePanel.Size = new System.Drawing.Size(273, 22);
+            this.pMovePanel.TabIndex = 2;
+            // 
             // cbMethod
             // 
             this.cbMethod.FormattingEnabled = true;
-            this.cbMethod.Location = new System.Drawing.Point(0, 17);
+            this.cbMethod.Location = new System.Drawing.Point(3, 26);
             this.cbMethod.Name = "cbMethod";
-            this.cbMethod.Size = new System.Drawing.Size(121, 21);
+            this.cbMethod.Size = new System.Drawing.Size(199, 21);
             this.cbMethod.TabIndex = 1;
             // 
             // lDescription
@@ -79,5 +90,6 @@
         private System.Windows.Forms.Panel Body;
         private System.Windows.Forms.Label lDescription;
         private System.Windows.Forms.ComboBox cbMethod;
+        private System.Windows.Forms.Panel pMovePanel;
     }
 }

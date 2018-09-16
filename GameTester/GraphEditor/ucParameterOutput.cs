@@ -21,7 +21,7 @@ namespace GraphEditor
                     return (int)lNameType.CreateGraphics().MeasureString(lNameType.Text, lNameType.Font).Width+5;//5 - пустые места
                 }
             }
-        ParameterInfo parameterInfo;
+
         public Type TypeOUT
         {
             get
@@ -29,6 +29,7 @@ namespace GraphEditor
               return parameterInfo.ParameterType;
             }
         }
+        private ParameterInfo parameterInfo;
         public UcParameterOutput()
         {
             InitializeComponent();
@@ -45,7 +46,6 @@ namespace GraphEditor
 
             this.Width = XNextControl + sc.Panel2.Width+1;
         }
-
         private void pbOut_MouseEnter(object sender, EventArgs e)
         {
             sc.Panel2.BackColor = Color.Lime;
@@ -54,8 +54,7 @@ namespace GraphEditor
         {
             sc.Panel2.BackColor = Color.DarkGreen;
         }
-
-        private void sc_Panel2_Click(object sender, EventArgs e)
+        private void sc_Panel2_Click(object sender, MouseEventArgs e)
         {
             ConnectorActivated(this);
         }
