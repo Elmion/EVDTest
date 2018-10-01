@@ -24,5 +24,10 @@ namespace GraphEditor
         {
              ucCanvas1.Resize();
         }
+
+        private void lComponents_ItemDrag(object sender, ItemDragEventArgs e)
+        {
+            DoDragDrop(e.Item as ListViewItem, DragDropEffects.Move);
+        }
     }
 }
