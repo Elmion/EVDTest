@@ -26,7 +26,7 @@ namespace GraphEditor
         {
             get
             {
-                return parameterInfo.ParameterType;
+                return parameterInfo == null? null : parameterInfo.ParameterType;
             }
         }
         Control control = null;
@@ -34,6 +34,11 @@ namespace GraphEditor
         public UcРarameterInput()
         {
             InitializeComponent();
+            this.parameterInfo = null;
+            lName.Text = "VoidEnter";
+            lName.Location = new Point(0, 4);
+            int XNextControl = (int)lName.CreateGraphics().MeasureString(lName.Text, lName.Font).Width;
+            this.Width = XNextControl + sc.Panel1.Width + 1;
         }
         public UcРarameterInput(ParameterInfo parameterInfo)
         {

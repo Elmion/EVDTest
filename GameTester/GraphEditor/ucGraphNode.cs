@@ -21,6 +21,7 @@ namespace GraphEditor
         public event Action<object> InitConnect;
         public event Action<object, Point> Moving;
         public event Action<List<Control>> MethodChanging;
+        public event Action<object> Delete;
         private bool Drag = false;
         private Point mouseDelta; //смещение мыши при перемещении
         public ucGraphNode()
@@ -108,7 +109,8 @@ namespace GraphEditor
                 }
                 position++;
             }
-            if (method.ReturnType.Name != "Void")
+
+                if (method.ReturnType.Name != "Void")
             {
                 UcParameterOutput output = new UcParameterOutput(method.ReturnParameter);
                 output.ConnectorActivated += InitConnect;
@@ -119,23 +121,44 @@ namespace GraphEditor
                 output.BringToFront();
                 ucControls.Add(output);
             }
-            int MaxWidth = widths.Count>0? widths.Max() + 20:20;
+               // Добавляем пустые сцеки
+
+                    UcРarameterInput enter = new UcРarameterInput();
+                    enter.ConnectorActivated += InitConnect;
+                    enter.ConnectorDelete += DeleteLink;
+                    widths.Add(enter.Size.Width);
+                    enter.Parent = this;
+                    enter.BringToFront();
+                    ucControls.Add(enter);
+
+                    UcParameterOutput exit = new UcParameterOutput();
+                    exit.ConnectorActivated += InitConnect;
+                    widths.Add(exit.Size.Width);
+                    exit.Parent = this;
+                    exit.BringToFront();
+                    ucControls.Add(exit);
+
+                //--------------------
+
+
+
+                int MaxWidth = widths.Count>0? widths.Max() + 20:20;
 
             SetupMinimalBodySize();
 
             Body.Size = new Size(MaxWidth <= Body.Size.Width? Body.Size.Width: MaxWidth, 
-                                 HEAD + CONNECTOR * (parameters.Count + (method.ReturnType.Name != "Void" ? 1 : 0)));
+                                 HEAD + CONNECTOR * (parameters.Count + (method.ReturnType.Name != "Void" ? 1 : 0)+1));//+1 - место под void контроли
 
-            int LeftPading = 0;
-            int Rightpading = 0;
-            if (method.ReturnType.Name != "Void"|| parameters.Find(x => x.IsOut) != null ) //Если есть контроли выходные
-            {
-                Rightpading = 26;
-            }
-            if (parameters.Find(x => (!x.IsOut)) != null)
-            {
-                LeftPading = 25;
-            }
+            int LeftPading = 25;
+            int Rightpading = 26;
+            //if (method.ReturnType.Name != "Void"|| parameters.Find(x => x.IsOut) != null ) //Если есть контроли выходные
+            //{
+            //    Rightpading = 26;
+            //}
+            //if (parameters.Find(x => (!x.IsOut)) != null)
+            //{
+            //    LeftPading = 25;
+            //}
 
             Body.Location = new Point(LeftPading, 0);
             this.Size = new Size(Body.Size.Width + LeftPading + Rightpading , Body.Size.Height);
@@ -145,7 +168,15 @@ namespace GraphEditor
                 {
                     if(ctrl is UcParameterOutput)
                     {
-                       ctrl.Location = new Point(Body.Location.X + Body.Size.Width - ((UcParameterOutput)ctrl).delta, DELTA_TOP + position * CONNECTOR);
+                       if(position == ucControls.Count-1)
+                        {
+                            //последний OUT контрол поднимаем на сточку вверх
+                            ctrl.Location = new Point(Body.Location.X + Body.Size.Width - ((UcParameterOutput)ctrl).delta, DELTA_TOP + (position-1) * CONNECTOR);
+                        }
+                       else
+                        {
+                            ctrl.Location = new Point(Body.Location.X + Body.Size.Width - ((UcParameterOutput)ctrl).delta, DELTA_TOP + position * CONNECTOR);
+                        }
                     }
                     if(ctrl is UcРarameterInput)
                     {
@@ -175,6 +206,16 @@ namespace GraphEditor
                 widthBody = (int)DescriptionSize.Width;
             Body.Location = new Point(0, 0);
             Body.Size = new Size(widthBody, lDescription.Location.Y + (int)DescriptionSize.Height);
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void pDelete_Click(object sender, EventArgs e)
+        {
+            Delete(this);
         }
     }
 }

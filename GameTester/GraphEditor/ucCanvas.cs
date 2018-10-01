@@ -12,10 +12,8 @@ namespace GraphEditor
 {
     public partial class ucCanvas : UserControl
     {
-        ucGraphNode uc;
-        ucGraphNode uc2;
         List<ConnectionLine> Lines;
-
+        List<ucGraphNode> Nodes;
         Control StartLinkNode;
 
 
@@ -23,11 +21,11 @@ namespace GraphEditor
         {
             InitializeComponent();
             Lines = new List<ConnectionLine>();
+            Nodes = new List<ucGraphNode>();
 
-            uc = CreateNode(0,0);
-            uc2 = CreateNode(200, 0);
+            Nodes.Add(CreateNode(0, 0));
+            Nodes.Add(CreateNode(200, 0));
 
-            uc2.FillControl(typeof(GraphEditor.TestClass), "Method1");
             SetStyle(
             System.Windows.Forms.ControlStyles.UserPaint |
             System.Windows.Forms.ControlStyles.AllPaintingInWmPaint |
@@ -35,25 +33,54 @@ namespace GraphEditor
             true);
             MouseMove += OnMouseMove;
         }
+        public void ddddd()
+        {
 
+            var p = Microsoft.Build.Evaluation
+                    .ProjectCollection.GlobalProjectCollection
+                      .LoadedProjects.FirstOrDefault(pr => pr.FullPath == "");
+            if (p == null)
+                p = new Microsoft.Build.Evaluation.Project("");
+
+            // Update instance of project
+            p.ReevaluateIfNecessary();
+
+            // Check folder is not already in the project
+            var folderLoc = @"C:\projects\BabDb\test\test2";
+            if (p.Items.FirstOrDefault(i => i.EvaluatedInclude == folderLoc) == null)
+                p.AddItem("Folder", folderLoc);
+
+            // Check file is not already in the project
+            var fileLoc = @"C:\projects\BabDb\test\test2\Class1.cs";
+            if (p.Items.FirstOrDefault(i => i.EvaluatedInclude == fileLoc) == null)
+                p.AddItem("Compile", fileLoc);
+           
+            p.Save();
+        }
 
         public ucGraphNode CreateNode(int x,int y)
         {
-            uc = new ucGraphNode(typeof(GraphEditor.TestClass));
+            ucGraphNode uc = new ucGraphNode(typeof(GraphEditor.TestClass));
             uc.Location = new Point(x, y);
             uc.Parent = this;
             uc.InitConnect += NodeInitConnect;
             uc.Moving += NodeMoving;
             uc.MethodChanging += NodeChangeMethod;
-           
+            uc.Delete += DeleteNode;
             return uc;
         }
 
+        private void DeleteNode(object obj)
+        {
+            ucGraphNode o = (ucGraphNode)obj;
+            Lines.RemoveAll(x => x.start.Parent == o || x.end.Parent == o); //контрол это узлы куда мы привязываем нам нужен сама вся нода
+            Nodes.Remove(o);
+            o.Dispose();
+        }
         private void NodeInitConnect(object obj)
         {
             if (StartLinkNode == null && obj is UcParameterOutput)
             {
-
                 //ставим флаг для начала откисовки соеденияющей линии
                 StartLinkNode = (Control)obj;
             }
@@ -61,8 +88,10 @@ namespace GraphEditor
             {
                 if (obj is UcРarameterInput && StartLinkNode != null) // соеденяем только с входами
                 { 
-                     if(((UcРarameterInput)obj).TypeIN == ((UcParameterOutput)StartLinkNode).TypeOUT)
-                             Lines.Add(new ConnectionLine { start = StartLinkNode, end = (Control)obj });
+                      if( ((UcРarameterInput)obj).TypeIN == null && ((UcParameterOutput)StartLinkNode).TypeOUT == null)
+                        Lines.Add(new ConnectionLine { start = StartLinkNode, end = (Control)obj, TypeLine = TypesConnection.NextProcess });
+                      else if (((UcРarameterInput)obj).TypeIN == ((UcParameterOutput)StartLinkNode).TypeOUT)
+                             Lines.Add(new ConnectionLine { start = StartLinkNode, end = (Control)obj, TypeLine = TypesConnection.DeliverData});
                 }
                 //скидываем флаг
                 StartLinkNode = null;
@@ -115,6 +144,7 @@ namespace GraphEditor
                                     );
                 //Конечная точка бизье относительно холста
                 Point mousePoint = this.PointToClient(MousePosition);
+
                 e.Graphics.DrawBezier(new Pen(Brushes.Aqua, 3),
                     p,
                     new Point(p.X + 50, p.Y),
@@ -139,11 +169,29 @@ namespace GraphEditor
                 this.Height = this.Parent.Height;
             }
         }
+
+        private void ucCanvas_DragDrop(object sender, DragEventArgs e)
+        {
+            ListViewItem item = (ListViewItem)e.Data.GetData(typeof(ListViewItem));
+            switch((string)item.Tag)
+            {
+                case "Method":
+                    Point buff =  PointToClient(new Point(e.X, e.Y));
+                    Nodes.Add(CreateNode(buff.X, buff.Y));
+                    break;
+            }
+        }
+
+        private void ucCanvas_DragEnter(object sender, DragEventArgs e)
+        {
+            e.Effect = DragDropEffects.Move;
+        }
     }
     public struct ConnectionLine
     {
        public Control start;
        public Control end;
+       public TypesConnection TypeLine;
        public void Draw(Graphics g)
        {
             //наши котролы это конечные точки.. поэтому вычиляем координаты для панели
@@ -155,11 +203,37 @@ namespace GraphEditor
                                    end.Parent.Location.X + end.Location.X,
                                    end.Parent.Location.Y + end.Location.Y + end.Height / 2
                                 );
-            g.DrawBezier(new Pen(Brushes.Aqua, 3),
-                    ps,
-                    new Point(ps.X + 80, ps.Y),//80 - выступ линии
-                    new Point(pe.X - 80, pe.Y),
-                    pe);
+            switch(TypeLine)
+            {
+                case TypesConnection.DeliverData:
+                    {
+                        Pen p = new Pen(Color.MediumSeaGreen, 3);
+                        p.EndCap = System.Drawing.Drawing2D.LineCap.ArrowAnchor;
+                        g.DrawBezier(p,
+                        ps,
+                        new Point(ps.X + 80, ps.Y),//80 - выступ линии
+                        new Point(pe.X - 80, pe.Y),
+                        pe);
+                    }
+                    break;
+                case TypesConnection.NextProcess:
+                    {
+                        Pen p = new Pen(Color.Black, 3);
+                        p.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
+                        p.EndCap = System.Drawing.Drawing2D.LineCap.ArrowAnchor;
+                        g.DrawBezier(p,
+                        ps,
+                        new Point(ps.X + 80, ps.Y),//80 - выступ линии
+                        new Point(pe.X - 80, pe.Y),
+                        pe);
+                    }
+                    break;
+            }
        }
+    }
+    public enum TypesConnection
+    {
+        DeliverData,
+        NextProcess
     }
 }

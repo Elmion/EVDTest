@@ -26,13 +26,18 @@ namespace GraphEditor
         {
             get
             {
-              return parameterInfo.ParameterType;
+              return parameterInfo == null ? null : parameterInfo.ParameterType;
             }
         }
         private ParameterInfo parameterInfo;
         public UcParameterOutput()
         {
             InitializeComponent();
+            this.parameterInfo = null;
+            lNameType.Text = "VoidExit";
+            lNameType.Location = new Point(0, 5);
+            int XNextControl = (int)lNameType.CreateGraphics().MeasureString(lNameType.Text, lNameType.Font).Width;
+            this.Width = XNextControl + sc.Panel2.Width + 1;
         }
         public UcParameterOutput(ParameterInfo parameterInfo)
         {

@@ -32,11 +32,12 @@
             // 
             // ucCanvas
             // 
+            this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Name = "ucCanvas";
-            this.Size = new System.Drawing.Size(148, 148);
+            this.DragDrop += new System.Windows.Forms.DragEventHandler(this.ucCanvas_DragDrop);
+            this.DragEnter += new System.Windows.Forms.DragEventHandler(this.ucCanvas_DragEnter);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.OnPaint);
             this.ResumeLayout(false);
 

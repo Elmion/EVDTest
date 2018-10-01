@@ -32,7 +32,9 @@
             this.pMovePanel = new System.Windows.Forms.Panel();
             this.cbMethod = new System.Windows.Forms.ComboBox();
             this.lDescription = new System.Windows.Forms.Label();
+            this.pDelete = new System.Windows.Forms.Panel();
             this.Body.SuspendLayout();
+            this.pMovePanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // Body
@@ -49,6 +51,7 @@
             // pMovePanel
             // 
             this.pMovePanel.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.pMovePanel.Controls.Add(this.pDelete);
             this.pMovePanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.pMovePanel.Location = new System.Drawing.Point(0, 0);
             this.pMovePanel.Name = "pMovePanel";
@@ -72,6 +75,17 @@
             this.lDescription.TabIndex = 0;
             this.lDescription.Text = "Description";
             // 
+            // pDelete
+            // 
+            this.pDelete.BackColor = System.Drawing.Color.Red;
+            this.pDelete.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pDelete.Location = new System.Drawing.Point(251, 0);
+            this.pDelete.Name = "pDelete";
+            this.pDelete.Size = new System.Drawing.Size(22, 22);
+            this.pDelete.TabIndex = 0;
+            this.pDelete.Click += new System.EventHandler(this.pDelete_Click);
+            this.pDelete.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
             // ucGraphNode
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -82,6 +96,7 @@
             this.Size = new System.Drawing.Size(331, 273);
             this.Body.ResumeLayout(false);
             this.Body.PerformLayout();
+            this.pMovePanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -91,5 +106,6 @@
         private System.Windows.Forms.Label lDescription;
         private System.Windows.Forms.ComboBox cbMethod;
         private System.Windows.Forms.Panel pMovePanel;
+        private System.Windows.Forms.Panel pDelete;
     }
 }
