@@ -45,7 +45,17 @@ namespace GraphEditor
             //TODO Высота элеметов
             InitializeComponent();
             this.parameterInfo = parameterInfo;
-            lName.Text = parameterInfo.Name +"("+ parameterInfo.ParameterType.ToString().Split('.').Last()+")";
+            //Пробуем взять описание параметра в читабельной форме
+            var paramDescriptor = parameterInfo.Member.GetCustomAttribute<ParametersExternalNamesAttribute>();
+            if (paramDescriptor != null && paramDescriptor.GetNames().Length > parameterInfo.Position)
+            {
+                lName.Text = paramDescriptor.GetNames()[parameterInfo.Position] + "(" + parameterInfo.ParameterType.ToString().Split('.').Last() + ")";
+            }
+            else
+            {
+                lName.Text = parameterInfo.Name + "(" + parameterInfo.ParameterType.ToString().Split('.').Last() + ")";
+            }
+
             lName.Location = new Point(0, 4);
             int XNextControl = (int)lName.CreateGraphics().MeasureString(lName.Text, lName.Font).Width;
             control = GetControl(parameterInfo.ParameterType, XNextControl);

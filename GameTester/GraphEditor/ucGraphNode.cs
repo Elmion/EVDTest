@@ -29,7 +29,8 @@ namespace GraphEditor
            
             InitializeComponent();
             cbMethod.SelectedIndexChanged += CbMethod_SelectedIndexChanged;
-            cbMethod.DisplayMember = "Name";
+            cbMethod.DisplayMember = "Text";
+            cbMethod.ValueMember = "Value";
             pMovePanel.MouseDown += DragStart;
             pMovePanel.MouseMove += DragContinue;
             pMovePanel.MouseUp += DragStop;
@@ -39,7 +40,8 @@ namespace GraphEditor
         {
             InitializeComponent();
             cbMethod.SelectedIndexChanged += CbMethod_SelectedIndexChanged;
-            cbMethod.DisplayMember = "Name";
+            cbMethod.DisplayMember = "Text";
+            cbMethod.ValueMember = "Value";
             FillControl(t);
             pMovePanel.MouseDown += DragStart;
             pMovePanel.MouseMove += DragContinue;
@@ -82,7 +84,7 @@ namespace GraphEditor
             else
             { 
               
-            MethodInfo method = (MethodInfo)cbMethod.SelectedItem;
+            MethodInfo method = ((ComboboxItem)cbMethod.SelectedItem).Value;
             List<ParameterInfo> parameters = new List<ParameterInfo>(method.GetParameters());
             List<int> widths = new List<int>();
             int position = 0;
@@ -190,7 +192,9 @@ namespace GraphEditor
         {
             List<MethodInfo>  Methods = new List<MethodInfo>(t.GetMethods());
             cbMethod.Items.Clear();
-            Methods.ForEach(x => cbMethod.Items.Add(x));
+            Methods.ForEach(x => cbMethod.Items.Add(new ComboboxItem() {
+                Text = x.GetCustomAttribute<MethodDescriptionAttribute>() != null? x.GetCustomAttribute<MethodDescriptionAttribute>().MethodName: x.Name ,
+                Value = x }));
             var buff = Methods.FindIndex(x => x.Name == method);
             if (method != "" && buff != -1)
             {
@@ -216,6 +220,11 @@ namespace GraphEditor
         private void pDelete_Click(object sender, EventArgs e)
         {
             Delete(this);
+        }
+        private class ComboboxItem
+        {
+           public string Text { get; set; }
+           public MethodInfo Value { get; set; }
         }
     }
 }

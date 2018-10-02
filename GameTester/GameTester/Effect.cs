@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections;
 using System.Reflection;
 using System.Xml;
+using GraphEditor;
 namespace GameTester
 {
     [Serializable]
@@ -14,6 +15,7 @@ namespace GameTester
         {
             Console.WriteLine(Text);
         }
+        [ParametersExternalNames("Минуты")]
         public void ChangeTime(int Minutes)
         {
             HeroTemp.Instance.time.AddTime(Minutes);
@@ -22,6 +24,7 @@ namespace GameTester
         /// Изменяет именованый ресурс на значение . Если его нет то предварительно, он будет создан с нулевым значением
         /// </summary>
         /// <param name="input"> Сначала имя ресурса, потом значние со знаком</param>
+        [ParametersExternalNames("Название ресурса","Изменить на")]
         public void ChangeResurce(Resurces NameResurce, int ChangingValue)
         {
             int index = HeroTemp.Instance.Resurces.FindIndex(x => x.Name == NameResurce);

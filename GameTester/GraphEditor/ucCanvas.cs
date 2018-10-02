@@ -33,30 +33,6 @@ namespace GraphEditor
             true);
             MouseMove += OnMouseMove;
         }
-        public void ddddd()
-        {
-
-            var p = Microsoft.Build.Evaluation
-                    .ProjectCollection.GlobalProjectCollection
-                      .LoadedProjects.FirstOrDefault(pr => pr.FullPath == "");
-            if (p == null)
-                p = new Microsoft.Build.Evaluation.Project("");
-
-            // Update instance of project
-            p.ReevaluateIfNecessary();
-
-            // Check folder is not already in the project
-            var folderLoc = @"C:\projects\BabDb\test\test2";
-            if (p.Items.FirstOrDefault(i => i.EvaluatedInclude == folderLoc) == null)
-                p.AddItem("Folder", folderLoc);
-
-            // Check file is not already in the project
-            var fileLoc = @"C:\projects\BabDb\test\test2\Class1.cs";
-            if (p.Items.FirstOrDefault(i => i.EvaluatedInclude == fileLoc) == null)
-                p.AddItem("Compile", fileLoc);
-           
-            p.Save();
-        }
 
         public ucGraphNode CreateNode(int x,int y)
         {
@@ -90,7 +66,8 @@ namespace GraphEditor
                 { 
                       if( ((UcРarameterInput)obj).TypeIN == null && ((UcParameterOutput)StartLinkNode).TypeOUT == null)
                         Lines.Add(new ConnectionLine { start = StartLinkNode, end = (Control)obj, TypeLine = TypesConnection.NextProcess });
-                      else if (((UcРarameterInput)obj).TypeIN == ((UcParameterOutput)StartLinkNode).TypeOUT)
+                      else if (((UcРarameterInput)obj).TypeIN == ((UcParameterOutput)StartLinkNode).TypeOUT //Это прямые типы
+                                    || ((UcParameterOutput)StartLinkNode).TypeOUT.ToString().StartsWith(((UcРarameterInput)obj).TypeIN.ToString())) //Это сравнение для out типы в конце добавляют &
                              Lines.Add(new ConnectionLine { start = StartLinkNode, end = (Control)obj, TypeLine = TypesConnection.DeliverData});
                 }
                 //скидываем флаг
