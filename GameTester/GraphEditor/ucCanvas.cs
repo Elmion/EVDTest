@@ -23,8 +23,8 @@ namespace GraphEditor
             Lines = new List<ConnectionLine>();
             Nodes = new List<ucGraphNode>();
 
-            Nodes.Add(CreateNode(0, 0));
-            Nodes.Add(CreateNode(200, 0));
+           // Nodes.Add(CreateNode(0, 0));
+           // Nodes.Add(CreateNode(200, 0));
 
             SetStyle(
             System.Windows.Forms.ControlStyles.UserPaint |
@@ -34,9 +34,9 @@ namespace GraphEditor
             MouseMove += OnMouseMove;
         }
 
-        public ucGraphNode CreateNode(int x,int y)
+        public ucGraphNode CreateNode(int x,int y,Type t)
         {
-            ucGraphNode uc = new ucGraphNode(typeof(GraphEditor.TestClass));
+            ucGraphNode uc = new ucGraphNode(t);
             uc.Location = new Point(x, y);
             uc.Parent = this;
             uc.InitConnect += NodeInitConnect;
@@ -44,6 +44,21 @@ namespace GraphEditor
             uc.MethodChanging += NodeChangeMethod;
             uc.Delete += DeleteNode;
             return uc;
+        }
+
+        private void ucCanvas_DragDrop(object sender, DragEventArgs e)
+        {
+            ListViewItem item = (ListViewItem)e.Data.GetData(typeof(ListViewItem));
+            if (item.Tag is Type)
+            {
+                Point buff = PointToClient(new Point(e.X, e.Y));
+                Nodes.Add(CreateNode(buff.X, buff.Y, (Type)item.Tag));
+            }
+        }
+
+        private void ucCanvas_DragEnter(object sender, DragEventArgs e)
+        {
+            e.Effect = DragDropEffects.Move;
         }
 
         private void DeleteNode(object obj)
@@ -63,12 +78,14 @@ namespace GraphEditor
             else
             {
                 if (obj is UcРarameterInput && StartLinkNode != null) // соеденяем только с входами
-                { 
-                      if( ((UcРarameterInput)obj).TypeIN == null && ((UcParameterOutput)StartLinkNode).TypeOUT == null)
+                {
+                    UcРarameterInput bufIn = (UcРarameterInput)obj;
+                    UcParameterOutput bufOut = (UcParameterOutput)StartLinkNode;
+                    if ( bufIn.TypeIN == null && bufOut.TypeOUT == null)
                         Lines.Add(new ConnectionLine { start = StartLinkNode, end = (Control)obj, TypeLine = TypesConnection.NextProcess });
-                      else if (((UcРarameterInput)obj).TypeIN == ((UcParameterOutput)StartLinkNode).TypeOUT //Это прямые типы
-                                    || ((UcParameterOutput)StartLinkNode).TypeOUT.ToString().StartsWith(((UcРarameterInput)obj).TypeIN.ToString())) //Это сравнение для out типы в конце добавляют &
-                             Lines.Add(new ConnectionLine { start = StartLinkNode, end = (Control)obj, TypeLine = TypesConnection.DeliverData});
+                    else if ((bufIn.TypeIN != null && bufOut.TypeOUT != null)&&(bufIn.TypeIN == bufOut.TypeOUT //Это прямые типы
+                               || bufOut.TypeOUT.ToString().StartsWith((bufIn.TypeIN.ToString()))) ) //Это сравнение для out типы в конце добавляют &
+                           Lines.Add(new ConnectionLine { start = StartLinkNode, end = (Control)obj, TypeLine = TypesConnection.DeliverData});
                 }
                 //скидываем флаг
                 StartLinkNode = null;
@@ -147,22 +164,6 @@ namespace GraphEditor
             }
         }
 
-        private void ucCanvas_DragDrop(object sender, DragEventArgs e)
-        {
-            ListViewItem item = (ListViewItem)e.Data.GetData(typeof(ListViewItem));
-            switch((string)item.Tag)
-            {
-                case "Method":
-                    Point buff =  PointToClient(new Point(e.X, e.Y));
-                    Nodes.Add(CreateNode(buff.X, buff.Y));
-                    break;
-            }
-        }
-
-        private void ucCanvas_DragEnter(object sender, DragEventArgs e)
-        {
-            e.Effect = DragDropEffects.Move;
-        }
     }
     public struct ConnectionLine
     {

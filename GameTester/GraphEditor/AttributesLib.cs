@@ -29,5 +29,9 @@ namespace GraphEditor
             MethodDescription = Description;
         }
     }
-    
+    public class IsEffectClassAttribute : Attribute
+    {
+
+    }
+
 }

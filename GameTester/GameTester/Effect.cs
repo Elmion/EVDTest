@@ -7,6 +7,7 @@ using GraphEditor;
 namespace GameTester
 {
     [Serializable]
+    [IsEffectClass]
     public class Effect
     {
         public static Effect Instance = new Effect();

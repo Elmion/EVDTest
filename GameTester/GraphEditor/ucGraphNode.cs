@@ -79,12 +79,23 @@ namespace GraphEditor
             if(cbMethod.SelectedIndex == -1)
             {
                 SetupMinimalBodySize();
-               this.Size = Body.Size;
+                lDescription.Text = "Нет описания";
+                this.Size = Body.Size;
             }
             else
             { 
               
             MethodInfo method = ((ComboboxItem)cbMethod.SelectedItem).Value;
+            MethodDescriptionAttribute methodDescriptor = method.GetCustomAttribute<MethodDescriptionAttribute>();
+            if (methodDescriptor != null)
+            {
+                lDescription.Text = methodDescriptor.MethodDescription;
+            }
+            else
+            {
+                lDescription.Text = "Нет описания";
+            }
+
             List<ParameterInfo> parameters = new List<ParameterInfo>(method.GetParameters());
             List<int> widths = new List<int>();
             int position = 0;
@@ -190,7 +201,7 @@ namespace GraphEditor
         }
         public void  FillControl(Type t,string method = "")
         {
-            List<MethodInfo>  Methods = new List<MethodInfo>(t.GetMethods());
+            List<MethodInfo>  Methods = new List<MethodInfo>(t.GetMethods(BindingFlags.Public|BindingFlags.Instance|BindingFlags.DeclaredOnly));
             cbMethod.Items.Clear();
             Methods.ForEach(x => cbMethod.Items.Add(new ComboboxItem() {
                 Text = x.GetCustomAttribute<MethodDescriptionAttribute>() != null? x.GetCustomAttribute<MethodDescriptionAttribute>().MethodName: x.Name ,
