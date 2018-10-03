@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("121221", 0);
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("Действие", 1);
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(fEditor));
             this.scGroups = new System.Windows.Forms.SplitContainer();
             this.pCommonPanel = new System.Windows.Forms.Panel();
@@ -111,10 +109,6 @@
             // 
             // lComponents
             // 
-            listViewItem2.Tag = "Method";
-            this.lComponents.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2});
             this.lComponents.LargeImageList = this.imageList1;
             this.lComponents.Location = new System.Drawing.Point(3, 3);
             this.lComponents.Name = "lComponents";

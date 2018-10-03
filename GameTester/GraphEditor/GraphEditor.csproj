@@ -52,7 +52,6 @@
       <DependentUpon>fEditor.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestClass.cs" />
     <Compile Include="ucCanvas.cs">
       <SubType>UserControl</SubType>
     </Compile>

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace GraphEditor
 {
+    [IsEffectClass]
     public class TestClass
     {
         string s = string.Empty;
