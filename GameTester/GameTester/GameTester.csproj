@@ -82,6 +82,7 @@
       <DependentUpon>CardsCatalog.cs</DependentUpon>
     </Compile>
     <Compile Include="Hero\TimeLine.cs" />
+    <Compile Include="Hero\IConnectEngine.cs" />
     <Compile Include="TestClass.cs" />
     <Compile Include="UserControls\CardView.cs">
       <SubType>UserControl</SubType>
