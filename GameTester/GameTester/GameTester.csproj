@@ -81,6 +81,7 @@
     <Compile Include="Forms\CardsCatalog.Designer.cs">
       <DependentUpon>CardsCatalog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Hero\TestArchecture\Knolege.cs" />
     <Compile Include="Hero\TimeLine.cs" />
     <Compile Include="Hero\IConnectEngine.cs" />
     <Compile Include="TestClass.cs" />
