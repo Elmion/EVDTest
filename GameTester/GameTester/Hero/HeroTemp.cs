@@ -10,12 +10,11 @@ namespace GameTester
     {
         public static readonly HeroTemp Instance = new HeroTemp();
 
-        public TimeLine time = new TimeLine();
         public List<Resurce> Resurces = new List<Resurce>();
         public List<InvetoryItem> Inventory = new List<InvetoryItem>();
         public List<Understanding> Сompetence = new List<Understanding>();
 
-         public HeroTemp()
+        public HeroTemp()
         {
             Resurces.Add(new Resurce { Name = GameTester.Resurces.Health, Value = 100 });
             Resurces.Add(new Resurce { Name = GameTester.Resurces.Money, Value = 0 });
